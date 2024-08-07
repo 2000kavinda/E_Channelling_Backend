@@ -1,4 +1,7 @@
 package com.nsbm.echannelling.patientservice.repository;
 
-public interface PatientRepo {
+import com.nsbm.echannelling.patientservice.model.Patient;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PatientRepo extends JpaRepository<Patient, Long> {
 }
