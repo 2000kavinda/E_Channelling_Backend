@@ -13,7 +13,7 @@ import java.util.Date;
 public class Patient_Appoinment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long appointmentId;
+    private Long id;
     private Long doctorId;
     private String firstName;
     private String secondName;
@@ -28,12 +28,12 @@ public class Patient_Appoinment {
 
     }
 
-    public Long getAppointmentId() {
-        return appointmentId;
+    public Long getId() {
+        return id;
     }
 
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getDoctorId() {

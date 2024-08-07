@@ -1,6 +1,7 @@
 package com.nsbm.echannelling.patientservice.controller;
 
 import com.nsbm.echannelling.patientservice.model.Patient_Appoinment;
+import com.nsbm.echannelling.patientservice.model.Patient_Doctor;
 import com.nsbm.echannelling.patientservice.service.Patient_AppoinmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +32,10 @@ public class Patient_AppoinmentController {
     }
 
 
-    // Api for the Hiran doctor side
-    @GetMapping("/getallAppoinments")
+    // Api for the Hiran doctor side -->Appoinment list
+    // Endpoint to get all booked appointments
+    @GetMapping("/all")
     public List<Patient_Appoinment> getAllAppointments() {
         return patient_appoinmentService.getAllAppointments();
     }
-
 }
