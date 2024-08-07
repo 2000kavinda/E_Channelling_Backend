@@ -1,30 +1,25 @@
 package com.nsbm.echannelling.patientservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class ScheduleModel {
-
+public class Schedule_Temp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sId;
     private Long drRegNo;
     private LocalDate date;
-    private LocalTime from;
-    private LocalTime to;
+    private LocalTime start;
+    private LocalTime end;
     private String roomNo;
 
 
-    public ScheduleModel() {
+    public Schedule_Temp() {
 
     }
-
 
     public Long getsId() {
         return sId;
@@ -32,14 +27,6 @@ public class ScheduleModel {
 
     public void setsId(Long sId) {
         this.sId = sId;
-    }
-
-    public Long getDrRegNo() {
-        return drRegNo;
-    }
-
-    public void setDrRegNo(Long drRegNo) {
-        this.drRegNo = drRegNo;
     }
 
     public LocalDate getDate() {
@@ -50,20 +37,28 @@ public class ScheduleModel {
         this.date = date;
     }
 
-    public LocalTime getFrom() {
-        return from;
+    public Long getDrRegNo() {
+        return drRegNo;
     }
 
-    public void setFrom(LocalTime from) {
-        this.from = from;
+    public void setDrRegNo(Long drRegNo) {
+        this.drRegNo = drRegNo;
     }
 
-    public LocalTime getTo() {
-        return to;
+    public LocalTime getStart() {
+        return start;
     }
 
-    public void setTo(LocalTime to) {
-        this.to = to;
+    public void setStart(LocalTime start) {
+        this.start = start;
+    }
+
+    public LocalTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalTime end) {
+        this.end = end;
     }
 
     public String getRoomNo() {

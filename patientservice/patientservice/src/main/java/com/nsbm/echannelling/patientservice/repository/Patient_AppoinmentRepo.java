@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface Patient_AppoinmentRepo  extends JpaRepository<Patient_Appoinment, Long> {
+
 }

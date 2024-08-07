@@ -13,7 +13,7 @@ import java.util.Date;
 public class Patient_Appoinment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long appointmentId;
     private Long doctorId;
     private String firstName;
     private String secondName;
@@ -21,21 +21,19 @@ public class Patient_Appoinment {
     private String contactNumber;
     private int age;
     private Date bookingDate;
+    private String Allergy;
 
-    public Patient_Appoinment(Long id) {
-        this.id = id;
-    }
 
     public Patient_Appoinment() {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public Long getDoctorId() {
@@ -78,6 +76,14 @@ public class Patient_Appoinment {
         this.contactNumber = contactNumber;
     }
 
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
     public int getAge() {
         return age;
     }
@@ -86,11 +92,11 @@ public class Patient_Appoinment {
         this.age = age;
     }
 
-    public Date getBookingDate() {
-        return bookingDate;
+    public String getAllergy() {
+        return Allergy;
     }
 
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
+    public void setAllergy(String allergy) {
+        Allergy = allergy;
     }
 }
