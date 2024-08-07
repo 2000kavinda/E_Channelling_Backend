@@ -2,16 +2,16 @@ package com.nsbm.echannelling.authenticationservice.dto;
 
 
 import lombok.Data;
+
 import java.time.LocalDate;
 
 @Data
-public class UserRequest {
-
+public class UserRespon {
     private Long regNo;
     private String email;
-    private String password;
+    //private String password;
     private String role;
-    private String code;
+    //private String code;
 
     // Doctor specific fields
     private String drName;

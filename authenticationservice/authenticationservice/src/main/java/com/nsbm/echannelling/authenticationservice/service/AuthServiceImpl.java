@@ -10,7 +10,12 @@ import com.nsbm.echannelling.authenticationservice.repository.DoctorRepository;
 import com.nsbm.echannelling.authenticationservice.repository.LabPersonRepository;
 import com.nsbm.echannelling.authenticationservice.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -30,53 +35,124 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private EmailService emailService;
 
-    @Override
-    public void saveUser(UserRequest userRequest) {
-        // Save Credential
-        Credential credential = new Credential();
-        credential.setRegNo(userRequest.getRegNo());
-        credential.setEmail(userRequest.getEmail());
-        credential.setPassword(userRequest.getPassword());
-        credential.setRole(userRequest.getRole());
-        credential.setCode(userRequest.getCode());
-        credentialsRepository.save(credential);
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-        // Save the respective role data
-        switch (userRequest.getRole()) {
-            case "DOCTOR":
-                Doctor doctor = new Doctor();
-                doctor.setDrRegNo(userRequest.getRegNo());
-                doctor.setDrName(userRequest.getDrName());
-                doctor.setSpecialize(userRequest.getSpecialize());
-                doctor.setType(userRequest.getType());
-                doctor.setProfileImage(userRequest.getProfileImage());
-                doctor.setDrQualification(userRequest.getDrQualification());
-                doctorRepository.save(doctor);
-                break;
-            case "LAB_PERSON":
-                LabPerson labPerson = new LabPerson();
-                labPerson.setLPRegNo(userRequest.getRegNo());
-                labPerson.setLPName(userRequest.getLPName());
-                labPerson.setLabNo(userRequest.getLabNo());
-                labPerson.setLPQualification(userRequest.getLPQualification());
-                labPersonRepository.save(labPerson);
-                break;
-            case "PATIENT":
-                Patient patient = new Patient();
-                patient.setPId(userRequest.getRegNo());
-                patient.setPName(userRequest.getPName());
-                patient.setBDay(userRequest.getBDay());
-                patient.setGender(userRequest.getGender());
-                patient.setContact(userRequest.getContact());
-                patientRepository.save(patient);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid role: " + userRequest.getRole());
+    private String generateRandomCode() {
+        Random random = new Random();
+        int randomCode = 100000 + random.nextInt(900000); // generates a random 6-digit number
+        return String.valueOf(randomCode);
+    }
+
+    @Override
+    public ResponseEntity<?> saveUser(UserRequest userRequest) {
+        // Save Credential
+        Optional<Credential> credentialOptional1 = credentialsRepository.findById(userRequest.getRegNo());
+        if (credentialOptional1.isPresent()) {
+            return ResponseEntity.badRequest().body("pre id registered");
+        }else
+        {
+            Optional<Credential> credentialOptional = credentialsRepository.findByEmail(userRequest.getEmail());
+            if (credentialOptional.isPresent()) {
+                return ResponseEntity.badRequest().body("pre registered");
+            } else {
+                String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
+                Credential credential = new Credential();
+                credential.setRegNo(userRequest.getRegNo());
+                credential.setEmail(userRequest.getEmail());
+                credential.setPassword(encodedPassword);
+                credential.setRole(userRequest.getRole());
+                credential.setCode(userRequest.getCode());
+                credentialsRepository.save(credential);
+
+                // Save the respective role data
+                switch (userRequest.getRole()) {
+                    case "DOCTOR":
+                        Doctor doctor = new Doctor();
+                        doctor.setDrRegNo(userRequest.getRegNo());
+                        doctor.setDrName(userRequest.getDrName());
+                        doctor.setSpecialize(userRequest.getSpecialize());
+                        doctor.setType(userRequest.getType());
+                        doctor.setProfileImage(userRequest.getProfileImage());
+                        doctor.setDrQualification(userRequest.getDrQualification());
+                        doctorRepository.save(doctor);
+                        break;
+                    case "LAB_PERSON":
+                        LabPerson labPerson = new LabPerson();
+                        labPerson.setLPRegNo(userRequest.getRegNo());
+                        labPerson.setLPName(userRequest.getLPName());
+                        labPerson.setLabNo(userRequest.getLabNo());
+                        labPerson.setLPQualification(userRequest.getLPQualification());
+                        labPersonRepository.save(labPerson);
+                        break;
+                    case "PATIENT":
+                        Patient patient = new Patient();
+                        patient.setPId(userRequest.getRegNo());
+                        patient.setPName(userRequest.getPName());
+                        patient.setBDay(userRequest.getBDay());
+                        patient.setGender(userRequest.getGender());
+                        patient.setContact(userRequest.getContact());
+                        patientRepository.save(patient);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid role: " + userRequest.getRole());
+                }
+                // Send email
+                String subject = "Registration Successful";
+                String text = "Dear " + userRequest.getPName() + ",\n\nYour registration was successful.\n\nBest regards,\nThe Team";
+                emailService.sendEmail(userRequest.getEmail(), subject, text);
+
+
+                return ResponseEntity.ok(userRequest);
+
+            }
         }
 
-        // Send email
-        String subject = "Registration Successful";
-        String text = "Dear " + userRequest.getPName() + ",\n\nYour registration was successful.\n\nBest regards,\nThe Team";
-        emailService.sendEmail(userRequest.getEmail(), subject, text);
+            }
+
+    @Override
+    public String createVerification(String email) {
+        Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
+        if (credentialOptional.isPresent()) {
+            Credential credential = credentialOptional.get();
+            String randomCode = generateRandomCode();
+            credential.setCode(randomCode);
+            credentialsRepository.save(credential);
+            String subject = "Password Reset OTP";
+            String text = "Dear user" + email + ",\n\nYour registration was successful.\n\nBest regards,\nThe Team";
+            emailService.sendEmail(email, subject, text);
+            return "Code updated to 5000";
+        } else {
+            return "Email not available";
+        }
+    }
+
+    @Override
+    public String updatePassword(String email, String code) {
+        Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
+        if (credentialOptional.get().getCode().equals(code)) {
+            Credential credential = credentialOptional.get();
+            credential.setPassword("5000");
+            credentialsRepository.save(credential);
+            return "Code updated to 5000";
+        } else {
+            return "Email  available";
+        }
+    }
+
+    @Override
+    public String login(String email, String password) {
+        Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
+        if (credentialOptional.isPresent()) {
+            Credential credential = credentialOptional.get();
+            // Use PasswordEncoder to check if the password matches
+            if (passwordEncoder.matches(password, credential.getPassword())) {
+                return "Logged in";
+            } else {
+                return "Wrong password";
+            }
+        } else {
+            return "Not an already user, please create an account first";
+        }
     }
 }
