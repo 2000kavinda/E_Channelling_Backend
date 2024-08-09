@@ -28,4 +28,28 @@ public class ScheduleController {
         return scheduleService.getAllSchedules();
 
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchSchedulesWithDoctorName(@RequestParam Long id) {
+        return scheduleService.searchScheduleWithId(id);
+
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateSchedule(@RequestParam Long id,@RequestBody Schedule schedule) {
+        return scheduleService.updateSchedule(id,schedule);
+
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteSchedule(@RequestParam Long id) {
+        return scheduleService.deleteSchedule(id);
+
+    }
+
+    @GetMapping("/searchN")
+    public ResponseEntity<List<ScheduleDTO>> getSchedulesByDoctorNamePart(@RequestParam String drNamePart) {
+        List<ScheduleDTO> schedules = scheduleService.getSchedulesByDoctorNamePart(drNamePart);
+        return ResponseEntity.ok(schedules);
+    }
 }
