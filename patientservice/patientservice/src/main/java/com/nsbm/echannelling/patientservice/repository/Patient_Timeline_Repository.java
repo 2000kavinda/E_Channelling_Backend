@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface Patient_TimelineRepo extends JpaRepository<Patient_Timeline, Long> {
-
+public interface Patient_Timeline_Repository extends JpaRepository<Patient_Timeline, Long> {
     List<Patient_Timeline> findByPatientId(Long patientId);
-
 
 }

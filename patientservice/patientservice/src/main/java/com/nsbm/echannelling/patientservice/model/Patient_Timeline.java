@@ -1,22 +1,28 @@
 package com.nsbm.echannelling.patientservice.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+
 public class Patient_Timeline {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-
-    @ManyToOne
-    private Patient patient;
-
+    private Long patientId;
     private String date;
     private String type;
     private double other;
 
-    public Patient_Timeline() {}
+
+
+  public Patient_Timeline() {
+
+    }
 
     public Long getId() {
         return id;
@@ -26,12 +32,12 @@ public class Patient_Timeline {
         this.id = id;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Long getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 
     public String getDate() {

@@ -8,7 +8,7 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long patient_id;
 
     private String name;
     private String gender;
@@ -23,31 +23,22 @@ public class Patient {
     private String phone;
     private String profilePictureUrl;
 
+    public Long getPatient_id() {
+        return patient_id;
+    }
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Patient_Timeline> timelines;
+    public void setPatient_id(Long patient_id) {
+        this.patient_id = patient_id;
+    }
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Patient_MedicalHistory> medicalHistories;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Patient_Medications> medications;
-
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Patient_Diet> diets;
 
     public Patient() {
 
     }
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
