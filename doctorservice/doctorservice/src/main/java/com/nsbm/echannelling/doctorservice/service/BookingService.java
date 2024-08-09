@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,5 +27,24 @@ public class BookingService {
 
     public List<Booking> getPatientByNamePart(String drNamePart) {
         return bookingRepository.findByNameContaining(drNamePart);
+    }
+
+    public ResponseEntity<?> filterBookingsByDate(LocalDate bDay, Long drId) {
+        try {
+            return  ResponseEntity.ok(bookingRepository.findBybDayAndDrId(bDay,drId));
+
+        } catch (Exception e) {
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    public ResponseEntity<?> getAppointmentCount(Long drId) {
+        try {
+            long count = bookingRepository.countByDrId(drId);
+            return ResponseEntity.ok(count);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

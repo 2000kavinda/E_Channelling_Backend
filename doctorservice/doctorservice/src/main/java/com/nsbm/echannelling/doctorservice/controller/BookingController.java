@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class BookingController {
     private BookingService bookingService;
 
     @GetMapping("/filter")
-    public ResponseEntity<?> getAllSchedules(@RequestParam Long drRegNo) {
+    public ResponseEntity<?> getAllBookings(@RequestParam Long drRegNo) {
         return bookingService.filterBookings(drRegNo);
 
     }
@@ -27,5 +28,16 @@ public class BookingController {
     public ResponseEntity<List<Booking>> getPatientByNamePart(@RequestParam String pNamePart) {
         List<Booking> schedules = bookingService.getPatientByNamePart(pNamePart);
         return ResponseEntity.ok(schedules);
+    }
+
+    @GetMapping("/filterByDate")
+    public ResponseEntity<?> getAllBookingByDate(@RequestParam LocalDate date, Long drRegNo) {
+        return bookingService.filterBookingsByDate(date,drRegNo);
+
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<?> getAppointmentCount(@RequestParam Long drId) {
+        return ResponseEntity.ok(bookingService.getAppointmentCount(drId));
     }
 }

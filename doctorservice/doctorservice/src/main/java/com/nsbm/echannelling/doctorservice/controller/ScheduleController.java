@@ -21,7 +21,7 @@ public class ScheduleController {
 
     }
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public String saveSchedules(@RequestBody Schedule schedule) {
         return scheduleService.saveSchedule(schedule);
     }
