@@ -30,11 +30,11 @@ public class ScheduleController {
 
     }
 
-    /*@GetMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<?> searchSchedulesWithDoctorName(@RequestParam LocalDate date) {
         return scheduleService.searchScheduleWithId(date);
 
-    }*/
+    }
 
     @PutMapping("/update")
     public ResponseEntity<?> updateSchedule(@RequestParam Long id,@RequestBody Schedule schedule) {
