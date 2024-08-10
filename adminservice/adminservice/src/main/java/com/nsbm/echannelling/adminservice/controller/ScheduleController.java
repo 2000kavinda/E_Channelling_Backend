@@ -2,11 +2,12 @@ package com.nsbm.echannelling.adminservice.controller;
 
 import com.nsbm.echannelling.adminservice.dto.ScheduleDTO;
 import com.nsbm.echannelling.adminservice.model.Schedule;
-import com.nsbm.echannelling.adminservice.service.ScheduleService;
+import com.nsbm.echannelling.adminservice.service.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -14,7 +15,7 @@ import java.util.List;
 public class ScheduleController {
 
     @Autowired
-    ScheduleService scheduleService;
+    ScheduleServiceImpl scheduleService;
 
 
 
@@ -29,11 +30,11 @@ public class ScheduleController {
 
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<?> searchSchedulesWithDoctorName(@RequestParam Long id) {
-        return scheduleService.searchScheduleWithId(id);
+    /*@GetMapping("/search")
+    public ResponseEntity<?> searchSchedulesWithDoctorName(@RequestParam LocalDate date) {
+        return scheduleService.searchScheduleWithId(date);
 
-    }
+    }*/
 
     @PutMapping("/update")
     public ResponseEntity<?> updateSchedule(@RequestParam Long id,@RequestBody Schedule schedule) {
