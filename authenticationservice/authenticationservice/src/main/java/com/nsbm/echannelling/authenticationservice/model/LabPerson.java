@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 public class LabPerson {
 
     @Id
-    public Long lPRegNo;
-    public String lPName;
-    public String labNo;
-    public String lPQualification;
+    private Long lPRegNo;
+    private String lPName;
+    private String labNo;
+    private String lPQualification;
 
 }

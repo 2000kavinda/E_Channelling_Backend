@@ -33,28 +33,28 @@ public class AuthServiceImpl implements AuthService {
     private PatientRepository patientRepository;
 
     @Autowired
-    private EmailService emailService;
+    private EmailServiceImpl emailService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     private String generateRandomCode() {
         Random random = new Random();
-        int randomCode = 100000 + random.nextInt(900000); // generates a random 6-digit number
+        int randomCode = 100000 + random.nextInt(900000);
         return String.valueOf(randomCode);
     }
 
     @Override
     public ResponseEntity<?> saveUser(UserRequest userRequest) {
-        // Save Credential
+
         Optional<Credential> credentialOptional1 = credentialsRepository.findById(userRequest.getRegNo());
         if (credentialOptional1.isPresent()) {
-            return ResponseEntity.badRequest().body("pre id registered");
+            return ResponseEntity.badRequest().body("Pre registered id");
         }else
         {
             Optional<Credential> credentialOptional = credentialsRepository.findByEmail(userRequest.getEmail());
             if (credentialOptional.isPresent()) {
-                return ResponseEntity.badRequest().body("pre registered");
+                return ResponseEntity.badRequest().body("Pre registered email");
             } else {
                 String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
                 Credential credential = new Credential();
@@ -65,7 +65,6 @@ public class AuthServiceImpl implements AuthService {
                 credential.setCode(userRequest.getCode());
                 credentialsRepository.save(credential);
 
-                // Save the respective role data
                 switch (userRequest.getRole()) {
                     case "DOCTOR":
                         Doctor doctor = new Doctor();
@@ -97,11 +96,12 @@ public class AuthServiceImpl implements AuthService {
                     default:
                         throw new IllegalArgumentException("Invalid role: " + userRequest.getRole());
                 }
-                // Send email
-                String subject = "Registration Successful";
-                String text = "Dear " + userRequest.getPName() + ",\n\nYour registration was successful.\n\nBest regards,\nThe Team";
+
+                String subject = "Welcome To Echannelling";
+                String text = "Dear User,\n\nYour registration was successful.\n\n Here are your account credentials:\n\n Username: "+ userRequest.getEmail()+" \n\n\n\nPassword :"+ userRequest.getPassword()+" \n\nBest regards,\nEchannelling Team";
                 emailService.sendEmail(userRequest.getEmail(), subject, text);
 
+                userRequest.setPassword(null);
 
                 return ResponseEntity.ok(userRequest);
 
@@ -119,24 +119,25 @@ public class AuthServiceImpl implements AuthService {
             credential.setCode(randomCode);
             credentialsRepository.save(credential);
             String subject = "Password Reset OTP";
-            String text = "Dear user" + email + ",\n\nYour registration was successful.\n\nBest regards,\nThe Team";
+            String text = "Dear user,\n\nWe received a request to reset the password for your" + email +" account.\n\nOTP: "+randomCode+"\n\nBest regards,\n\nEchannelling Team";
             emailService.sendEmail(email, subject, text);
-            return "Code updated to 5000";
+            return "Reset OTP send to the mail";
         } else {
             return "Email not available";
         }
     }
 
     @Override
-    public String updatePassword(String email, String code) {
+    public String updatePassword(String email, String code,String newPassword) {
         Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
         if (credentialOptional.get().getCode().equals(code)) {
+            String encodedPassword = passwordEncoder.encode(newPassword);
             Credential credential = credentialOptional.get();
-            credential.setPassword("5000");
+            credential.setPassword(encodedPassword);
             credentialsRepository.save(credential);
-            return "Code updated to 5000";
+            return "Pssword updated successfully";
         } else {
-            return "Email  available";
+            return "Something went wrong";
         }
     }
 
@@ -145,7 +146,6 @@ public class AuthServiceImpl implements AuthService {
         Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
         if (credentialOptional.isPresent()) {
             Credential credential = credentialOptional.get();
-            // Use PasswordEncoder to check if the password matches
             if (passwordEncoder.matches(password, credential.getPassword())) {
                 return "Logged in";
             } else {

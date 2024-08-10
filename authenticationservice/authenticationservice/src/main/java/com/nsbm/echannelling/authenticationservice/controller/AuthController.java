@@ -16,7 +16,6 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRequest userRequest) {
         return authService.saveUser(userRequest);
-       // return ResponseEntity.ok(result);
     }
 
     @PutMapping ("/createverification")
@@ -26,8 +25,8 @@ public class AuthController {
     }
 
     @PutMapping ("/updatepw")
-    public ResponseEntity<String> updatePW(@RequestParam String email, @RequestParam String code) {
-        String result = authService.updatePassword(email,code);
+    public ResponseEntity<String> updatePW(@RequestParam String email, @RequestParam String code,@RequestParam String newPassword) {
+        String result = authService.updatePassword(email,code,newPassword);
         return ResponseEntity.ok(result);
     }
 

@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 public class Credential {
 
     @Id
-    public Long regNo;
-    public String email;
-    public String password;
-    public String role;
-    public String code;
+    private Long regNo;
+    private String email;
+    private String password;
+    private String role;
+    private String code;
 }

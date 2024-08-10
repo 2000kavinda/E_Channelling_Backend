@@ -13,10 +13,10 @@ import java.time.LocalDate;
 public class Patient {
 
     @Id
-    public Long pId;
-    public String pName;
-    public LocalDate bDay;
-    public String gender;
-    public String contact;
+    private Long pId;
+    private String pName;
+    private LocalDate bDay;
+    private String gender;
+    private String contact;
 
 }

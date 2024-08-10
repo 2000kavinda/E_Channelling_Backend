@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 public class Doctor {
 
     @Id
-    public Long drRegNo;
-    public String drName;
-    public String specialize;
-    public String type;
-    public String profileImage;
-    public String drQualification;
+    private Long drRegNo;
+    private String drName;
+    private String specialize;
+    private String type;
+    private String profileImage;
+    private String drQualification;
     
 }
