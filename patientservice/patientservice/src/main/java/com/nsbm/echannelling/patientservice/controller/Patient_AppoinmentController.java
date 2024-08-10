@@ -1,11 +1,9 @@
 package com.nsbm.echannelling.patientservice.controller;
 
 import com.nsbm.echannelling.patientservice.model.Patient_Appoinment;
-import com.nsbm.echannelling.patientservice.model.Patient_Doctor;
-import com.nsbm.echannelling.patientservice.service.Patient_AppoinmentService;
+import com.nsbm.echannelling.patientservice.service.Patient_AppoinmentService_Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/appointments")
 public class Patient_AppoinmentController {
     @Autowired
-    private Patient_AppoinmentService patient_appoinmentService;
+    private Patient_AppoinmentService_Impl patient_appoinmentService;
 
     @PostMapping("/book")
     public ResponseEntity<String> bookAppointment(@RequestBody Patient_Appoinment appointment) {
