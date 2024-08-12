@@ -1,7 +1,7 @@
 package com.nsbm.echannelling.doctorservice.controller;
 
 import com.nsbm.echannelling.doctorservice.model.Booking;
-import com.nsbm.echannelling.doctorservice.service.BookingService;
+import com.nsbm.echannelling.doctorservice.service.BookingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import java.util.List;
 public class BookingController {
 
     @Autowired
-    private BookingService bookingService;
+    private BookingServiceImpl bookingService;
 
     @GetMapping("/filter")
     public ResponseEntity<?> getAllBookings(@RequestParam Long drRegNo) {
