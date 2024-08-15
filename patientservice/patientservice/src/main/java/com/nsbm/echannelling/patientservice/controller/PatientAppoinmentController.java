@@ -1,7 +1,7 @@
 package com.nsbm.echannelling.patientservice.controller;
 
-import com.nsbm.echannelling.patientservice.model.Patient_Appoinment;
-import com.nsbm.echannelling.patientservice.service.Patient_AppoinmentService_Impl;
+import com.nsbm.echannelling.patientservice.model.PatientAppoinment;
+import com.nsbm.echannelling.patientservice.service.implementation.PatientAppoinmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/appointments")
-public class Patient_AppoinmentController {
+public class PatientAppoinmentController {
     @Autowired
-    private Patient_AppoinmentService_Impl patient_appoinmentService;
+    private PatientAppoinmentServiceImpl patient_appoinmentService;
 
     @PostMapping("/book")
-    public ResponseEntity<String> bookAppointment(@RequestBody Patient_Appoinment appointment) {
-        Patient_Appoinment savedAppointment = patient_appoinmentService.bookAppointment(appointment);
+    public ResponseEntity<String> bookAppointment(@RequestBody PatientAppoinment appointment) {
+        PatientAppoinment savedAppointment = patient_appoinmentService.bookAppointment(appointment);
         if (savedAppointment != null) {
             return ResponseEntity.ok("Appointment successfully booked.");
         } else {
@@ -25,7 +25,7 @@ public class Patient_AppoinmentController {
     }
 
     @GetMapping("/{id}")
-    public Patient_Appoinment getAppointmentById(@PathVariable Long id) {
+    public PatientAppoinment getAppointmentById(@PathVariable Long id) {
         return patient_appoinmentService.getAppointmentById(id).orElse(null);
     }
 
@@ -33,7 +33,7 @@ public class Patient_AppoinmentController {
     // Api for the Hiran doctor side -->Appoinment list
     // Endpoint to get all booked appointments
     @GetMapping("/all")
-    public List<Patient_Appoinment> getAllAppointments() {
+    public List<PatientAppoinment> getAllAppointments() {
         return patient_appoinmentService.getAllAppointments();
     }
 }

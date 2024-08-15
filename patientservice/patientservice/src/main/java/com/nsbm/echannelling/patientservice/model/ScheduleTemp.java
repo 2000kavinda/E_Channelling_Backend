@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Schedule_Temp {
+public class ScheduleTemp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sId;
@@ -17,7 +17,7 @@ public class Schedule_Temp {
     private String roomNo;
 
 
-    public Schedule_Temp() {
+    public ScheduleTemp() {
 
     }
 

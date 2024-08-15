@@ -1,21 +1,38 @@
-package com.nsbm.echannelling.patientservice.service;
+package com.nsbm.echannelling.patientservice.service.implementation;
 
-import com.nsbm.echannelling.patientservice.model.Patient_Notification;
-import com.nsbm.echannelling.patientservice.repository.Patient_NotificationRepo;
+import com.nsbm.echannelling.patientservice.model.PatientNotification;
+import com.nsbm.echannelling.patientservice.repository.PatientNotificationRepo;
+import com.nsbm.echannelling.patientservice.service.PatientNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+//remove underscore from classname**********
+//Add comments
+//Add doc comments
+//Add impl package move all *******
+
+// Add exceptions
+
+//****ResponseEntity<?>
+//return ResponseEntity.ok(count);
+//catch (Exception e) {
+//       return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
+//      }
+
+
+
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class Patient_NotificationService {
+public class PatientNotificationServiceImpl implements PatientNotificationService {
 
     @Autowired
-    private Patient_NotificationRepo notificationRepository;
+    private PatientNotificationRepo notificationRepository;
 
-    public ResponseEntity<?> addNotification(Long doctorId, Patient_Notification notification) {
+    @Override
+    public ResponseEntity<?> addNotification(Long doctorId, PatientNotification notification) {
         try {
             notification.setDoctorId(doctorId);
             notification.setDate(new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
@@ -25,11 +42,11 @@ public class Patient_NotificationService {
             return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
         }
     }
-
-    public List<Patient_Notification> getNotificationsByDoctorId(Long doctorId) {
+    @Override
+    public List<PatientNotification> getNotificationsByDoctorId(Long doctorId) {
         return notificationRepository.findByDoctorId(doctorId);
     }
-
+    @Override
     public ResponseEntity<?> deleteNotification(Long notificationId) {
         try {
             notificationRepository.deleteById(notificationId);
@@ -38,12 +55,12 @@ public class Patient_NotificationService {
             return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
         }
     }
-
+    @Override
     public ResponseEntity<?> markAsRead(Long notificationId) {
         try {
-            Optional<Patient_Notification> notification = notificationRepository.findById(notificationId);
+            Optional<PatientNotification> notification = notificationRepository.findById(notificationId);
             if (notification.isPresent()) {
-                Patient_Notification notif = notification.get();
+                PatientNotification notif = notification.get();
                 notif.setRead(true);
                 return ResponseEntity.ok(notificationRepository.save(notif));
             } else {
@@ -53,12 +70,12 @@ public class Patient_NotificationService {
             return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
         }
     }
-
+    @Override
     public ResponseEntity<?> markAsFavorite(Long notificationId) {
         try {
-            Optional<Patient_Notification> notification = notificationRepository.findById(notificationId);
+            Optional<PatientNotification> notification = notificationRepository.findById(notificationId);
             if (notification.isPresent()) {
-                Patient_Notification notif = notification.get();
+                PatientNotification notif = notification.get();
                 notif.setFavorite(true);
                 return ResponseEntity.ok(notificationRepository.save(notif));
             } else {

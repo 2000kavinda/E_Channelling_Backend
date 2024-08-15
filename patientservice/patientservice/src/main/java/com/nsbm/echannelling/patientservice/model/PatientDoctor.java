@@ -4,7 +4,7 @@ package com.nsbm.echannelling.patientservice.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Patient_Doctor {
+public class PatientDoctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long drRegNo;
@@ -14,11 +14,11 @@ public class Patient_Doctor {
     private String profileImage;
     private String drQualification;
 
-    public Patient_Doctor(Long drRegNo) {
+    public PatientDoctor(Long drRegNo) {
 
     }
 
-    public Patient_Doctor() {
+    public PatientDoctor() {
 
     }
 

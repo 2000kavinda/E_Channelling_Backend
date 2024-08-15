@@ -1,7 +1,8 @@
-package com.nsbm.echannelling.patientservice.service;
+package com.nsbm.echannelling.patientservice.service.implementation;
 
-import com.nsbm.echannelling.patientservice.model.Patient_Timeline;
-import com.nsbm.echannelling.patientservice.repository.Patient_Timeline_Repository;
+import com.nsbm.echannelling.patientservice.model.PatientTimeline;
+import com.nsbm.echannelling.patientservice.repository.PatientTimelineRepository;
+import com.nsbm.echannelling.patientservice.service.PatientTimelineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class Patient_Timeline_Service {
+public class PatientTimelineServiceImpl implements PatientTimelineService {
 
     @Autowired
-    private Patient_Timeline_Repository patient_timeline_repository;
-
-    public ResponseEntity<?> saveTimeLine(Long patientId, Patient_Timeline patient_timeline) {
+    private PatientTimelineRepository patient_timeline_repository;
+@Override
+    public ResponseEntity<?> saveTimeLine(Long patientId, PatientTimeline patient_timeline) {
         try {
             patient_timeline.setPatientId(patientId);
             return  ResponseEntity.ok(patient_timeline_repository.save(patient_timeline));
@@ -24,17 +25,17 @@ public class Patient_Timeline_Service {
             return ResponseEntity.badRequest().body("Something went wrong");
         }
     }
-
-    public List<Patient_Timeline> getTimelinesByPatientId(Long patientId) {
+    @Override
+    public List<PatientTimeline> getTimelinesByPatientId(Long patientId) {
         return patient_timeline_repository.findByPatientId(patientId);
     }
-
-    public ResponseEntity<?> updateTimeLine(Long patientId, Long timelineId, Patient_Timeline updatedTimeline) {
+    @Override
+    public ResponseEntity<?> updateTimeLine(Long patientId, Long timelineId, PatientTimeline updatedTimeline) {
         try {
-            Optional<Patient_Timeline> existingTimeline = patient_timeline_repository.findById(timelineId);
+            Optional<PatientTimeline> existingTimeline = patient_timeline_repository.findById(timelineId);
 
             if (existingTimeline.isPresent() && existingTimeline.get().getPatientId().equals(patientId)) {
-                Patient_Timeline timeline = existingTimeline.get();
+                PatientTimeline timeline = existingTimeline.get();
                 timeline.setDate(updatedTimeline.getDate());
                 timeline.setType(updatedTimeline.getType());
                 timeline.setOther(updatedTimeline.getOther());

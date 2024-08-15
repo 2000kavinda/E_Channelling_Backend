@@ -1,9 +1,9 @@
 package com.nsbm.echannelling.patientservice.controller;
 
-import com.nsbm.echannelling.patientservice.model.Patient_Doctor;
-import com.nsbm.echannelling.patientservice.model.Schedule_Temp;
-import com.nsbm.echannelling.patientservice.service.Patient_DoctorService;
-import com.nsbm.echannelling.patientservice.service.ScheduleService;
+import com.nsbm.echannelling.patientservice.model.PatientDoctor;
+import com.nsbm.echannelling.patientservice.model.ScheduleTemp;
+import com.nsbm.echannelling.patientservice.service.implementation.PatientDoctorServiceImpl;
+import com.nsbm.echannelling.patientservice.service.implementation.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +17,19 @@ import java.util.Optional;
 public class ScheduleController {
 
     @Autowired
-    private ScheduleService scheduleTempService;
+    private ScheduleServiceImpl scheduleTempService;
     @Autowired
-    private Patient_DoctorService patient_DoctorService;
+    private PatientDoctorServiceImpl patient_DoctorService;
 
     // Endpoint to add a new schedule
     @PostMapping
-    public Schedule_Temp addSchedule(@RequestBody Schedule_Temp scheduleTemp) {
+    public ScheduleTemp addSchedule(@RequestBody ScheduleTemp scheduleTemp) {
         return scheduleTempService.addSchedule(scheduleTemp);
     }
 
     // Endpoint to get schedules details by doctor ID
     @GetMapping("/{doctorId}")
-    public List<Schedule_Temp> getSchedulesByDoctorId(@PathVariable Long doctorId) {
+    public List<ScheduleTemp> getSchedulesByDoctorId(@PathVariable Long doctorId) {
         return scheduleTempService.getSchedulesByDoctorId(doctorId);
     }
 
@@ -41,7 +41,7 @@ public class ScheduleController {
     // Endpoint to retrieve doctor ID by doctor ID
     @GetMapping("/info/{doctorId}")
     public ResponseEntity<Long> getDoctorIdById(@PathVariable Long doctorId) {
-        Optional<Patient_Doctor> doctor = patient_DoctorService.getDoctorById(doctorId);
+        Optional<PatientDoctor> doctor = patient_DoctorService.getDoctorById(doctorId);
         return doctor.map(d -> ResponseEntity.ok(d.getDrRegNo()))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

@@ -3,7 +3,7 @@ package com.nsbm.echannelling.patientservice.model;
 import jakarta.persistence.*;
 
 @Entity
-public class DoctorDetails_Temp {
+public class DoctorDetailsTemp {
     @Id
     private Long doctorRegNo;
 
@@ -17,7 +17,7 @@ public class DoctorDetails_Temp {
 
 
 
-    public DoctorDetails_Temp() {
+    public DoctorDetailsTemp() {
 
     }
 

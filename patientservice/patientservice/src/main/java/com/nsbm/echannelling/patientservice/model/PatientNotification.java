@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient_Notification {
+public class PatientNotification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

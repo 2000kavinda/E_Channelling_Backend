@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Patient_Appoinment {
+public class PatientAppoinment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +24,7 @@ public class Patient_Appoinment {
     private String Allergy;
 
 
-    public Patient_Appoinment() {
+    public PatientAppoinment() {
 
     }
 

@@ -1,7 +1,7 @@
 package com.nsbm.echannelling.patientservice.controller;
 
 import com.nsbm.echannelling.patientservice.model.Patient;
-import com.nsbm.echannelling.patientservice.service.PatientService;
+import com.nsbm.echannelling.patientservice.service.implementation.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class PatientController {
 
     @Autowired
-    private PatientService patientService;
+    private PatientServiceImpl patientService;
 
     @GetMapping
     public List<Patient> getAllPatients() {

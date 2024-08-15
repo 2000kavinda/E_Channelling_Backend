@@ -3,12 +3,10 @@ package com.nsbm.echannelling.patientservice.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 
-public class Patient_Timeline {
+public class PatientTimeline {
 
     @Id
     @GeneratedValue
@@ -20,7 +18,7 @@ public class Patient_Timeline {
 
 
 
-  public Patient_Timeline() {
+  public PatientTimeline() {
 
     }
 
