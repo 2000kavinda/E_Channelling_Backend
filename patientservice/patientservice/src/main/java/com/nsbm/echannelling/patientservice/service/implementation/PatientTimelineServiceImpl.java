@@ -13,8 +13,12 @@ import java.util.Optional;
 @Service
 public class PatientTimelineServiceImpl implements PatientTimelineService {
 
+
+    // inserts the repository dependency for PatientTimeline
     @Autowired
     private PatientTimelineRepository patient_timeline_repository;
+
+    // Saves a new timeline for a specific patient
 @Override
     public ResponseEntity<?> saveTimeLine(Long patientId, PatientTimeline patient_timeline) {
         try {
@@ -25,17 +29,23 @@ public class PatientTimelineServiceImpl implements PatientTimelineService {
             return ResponseEntity.badRequest().body("Something went wrong");
         }
     }
+
+    // Retrieves all timelines for a specific patient by filtering from patientId
     @Override
     public List<PatientTimeline> getTimelinesByPatientId(Long patientId) {
         return patient_timeline_repository.findByPatientId(patientId);
     }
+
+    // Updates an existing timeline for a specific patient
     @Override
     public ResponseEntity<?> updateTimeLine(Long patientId, Long timelineId, PatientTimeline updatedTimeline) {
         try {
             Optional<PatientTimeline> existingTimeline = patient_timeline_repository.findById(timelineId);
 
+            // Checks if the timeline exists and belongs to the specified patient
             if (existingTimeline.isPresent() && existingTimeline.get().getPatientId().equals(patientId)) {
                 PatientTimeline timeline = existingTimeline.get();
+                // Updates the fields of the existing timeline
                 timeline.setDate(updatedTimeline.getDate());
                 timeline.setType(updatedTimeline.getType());
                 timeline.setOther(updatedTimeline.getOther());
@@ -45,6 +55,7 @@ public class PatientTimelineServiceImpl implements PatientTimelineService {
                 return ResponseEntity.badRequest().body("Timeline not found or does not belong to the specified patient");
             }
         } catch (Exception e) {
+            // Handles any exceptions and returns a bad request response with the error message
             return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
         }
     }
