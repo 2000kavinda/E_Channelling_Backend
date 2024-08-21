@@ -39,6 +39,8 @@ public class PatientDoctorServiceImpl implements PatientDoctorService {
     public List<PatientDoctor> searchDoctorsByFilters(String name, String specialty, String type) {
         return patient_doctorRepo.searchDoctorsByFilter(name, specialty, type);
     }
+
+    //this is for the filter doctors by using DoctorId
     @Override
     public Optional<PatientDoctor> getDoctorById(Long doctorId) {
         return patient_doctorRepo.findById(doctorId);
