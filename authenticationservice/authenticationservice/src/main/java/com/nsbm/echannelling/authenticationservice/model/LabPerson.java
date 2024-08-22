@@ -15,5 +15,6 @@ public class LabPerson {
     private String lPName;
     private String labNo;
     private String lPQualification;
+    private String lPProfileImage;
 
 }

@@ -85,6 +85,7 @@ public class AuthServiceImpl implements AuthService {
                             labPerson.setLPName(userRequest.getLPName());
                             labPerson.setLabNo(userRequest.getLabNo());
                             labPerson.setLPQualification(userRequest.getLPQualification());
+                            labPerson.setLPProfileImage(userRequest.getLPProfileImage());
                             labPersonRepository.save(labPerson);
                             break;
                         case "PATIENT":
@@ -94,6 +95,7 @@ public class AuthServiceImpl implements AuthService {
                             patient.setBDay(userRequest.getBDay());
                             patient.setGender(userRequest.getGender());
                             patient.setContact(userRequest.getContact());
+                            patient.setPProfileImage(userRequest.getPProfileImage());
                             patientRepository.save(patient);
                             break;
                         default:

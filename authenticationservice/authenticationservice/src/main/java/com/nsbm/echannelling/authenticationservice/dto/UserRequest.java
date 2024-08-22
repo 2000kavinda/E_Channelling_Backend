@@ -24,10 +24,13 @@ public class UserRequest {
     private String lPName;
     private String labNo;
     private String lPQualification;
+    private String lPProfileImage;
+
 
     // Patient specific fields
     private String pName;
     private LocalDate bDay;
     private String gender;
     private String contact;
+    private String pProfileImage;
 }
