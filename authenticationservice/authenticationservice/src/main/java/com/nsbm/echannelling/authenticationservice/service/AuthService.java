@@ -7,9 +7,9 @@ public interface AuthService {
 
     ResponseEntity<?> saveUser(UserRequest userRequest);
 
-    String createVerification(String email);
+    ResponseEntity<?> createVerification(String email);
 
-    String updatePassword(String email, String code,String newPassword);
+    ResponseEntity<?> updatePassword(String email, String code,String newPassword);
 
-    String login(String email, String password);
+    ResponseEntity<?> login(String email, String password);
 }

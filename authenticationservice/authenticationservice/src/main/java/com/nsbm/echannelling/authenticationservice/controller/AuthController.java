@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("api/v1/auth")
 public class AuthController {
 
@@ -19,20 +20,20 @@ public class AuthController {
     }
 
     @PutMapping ("/createverification")
-    public ResponseEntity<String> checkAndUpdateEmail(@RequestParam String email) {
-        String result = authService.createVerification(email);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<?> checkAndUpdateEmail(@RequestParam String email) {
+
+        return ResponseEntity.ok(authService.createVerification(email));
     }
 
     @PutMapping ("/updatepw")
-    public ResponseEntity<String> updatePW(@RequestParam String email, @RequestParam String code,@RequestParam String newPassword) {
-        String result = authService.updatePassword(email,code,newPassword);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<?> updatePW(@RequestParam String email, @RequestParam String code,@RequestParam String newPassword) {
+
+        return ResponseEntity.ok(authService.updatePassword(email,code,newPassword));
     }
 
     @GetMapping ("/login")
-    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String pw) {
-        String result = authService.login(email,pw);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String pw) {
+
+        return ResponseEntity.ok(authService.login(email,pw));
     }
 }
