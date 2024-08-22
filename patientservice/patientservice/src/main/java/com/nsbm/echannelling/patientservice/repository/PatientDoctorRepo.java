@@ -8,8 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface PatientDoctorRepo extends JpaRepository<PatientDoctor, Long> {
 
+    // Finds a list of PatientDoctor by  filtering their specialty
     List<PatientDoctor> findBySpecialize(String specialty);
 
+    //query  to search for doctors based on multiple optional filters: name, specialty, and type
     @Query("SELECT pd FROM PatientDoctor pd WHERE " +
             "(:name IS NULL OR pd.drName LIKE %:name%) AND " +
             "(:specialty IS NULL OR pd.specialize LIKE %:specialty%) AND " +
