@@ -1,15 +1,15 @@
 # E_Channelling_Backend
 
-//Add comments\n
-//Add doc comments\n\n\n
-//remove underscore from classname**********\n
+//Add comments
+//Add doc comments
+//remove underscore from classname**********
 
-//Add impl package move all ******* \n
+//Add impl package move all ******* 
 
-// Add exceptions\n
+// Add exceptions
 
-//****ResponseEntity<?> \n
-//return ResponseEntity.ok(count); \n
+//****ResponseEntity<?> 
+//return ResponseEntity.ok(count); 
 //catch (Exception e) {
 //       return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
 //      }
