@@ -11,6 +11,7 @@ import com.nsbm.echannelling.authenticationservice.repository.LabPersonRepositor
 import com.nsbm.echannelling.authenticationservice.repository.PatientRepository;
 import com.nsbm.echannelling.authenticationservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,11 +54,11 @@ public class AuthServiceImpl implements AuthService {
 
             Optional<Credential> credentialOptional1 = credentialsRepository.findById(userRequest.getRegNo());
             if (credentialOptional1.isPresent()) {
-                return ResponseEntity.badRequest().body("Pre registered id");
+                return ResponseEntity.ok("Pre registered id");
             } else {
                 Optional<Credential> credentialOptional = credentialsRepository.findByEmail(userRequest.getEmail());
                 if (credentialOptional.isPresent()) {
-                    return ResponseEntity.badRequest().body("Pre registered email");
+                    return ResponseEntity.ok("Pre registered email");
                 } else {
                     String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
                     Credential credential = new Credential();
@@ -108,7 +109,13 @@ public class AuthServiceImpl implements AuthService {
 
                     userRequest.setPassword(null);
 
-                    return ResponseEntity.ok(userRequest);
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("status", "Success");
+                    return ResponseEntity
+                            .ok()
+                            .headers(headers)
+                            .body(userRequest);
+
 
                 }
             }
@@ -172,13 +179,25 @@ public class AuthServiceImpl implements AuthService {
             if (credentialOptional.isPresent()) {
                 Credential credential = credentialOptional.get();
                 if (passwordEncoder.matches(password, credential.getPassword())) {
-
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("status", "Success");
                     if (Objects.equals(credential.getRole(), "DOCTOR")) {
-                        return ResponseEntity.ok(doctorRepository.findById(credential.getRegNo()));
+                        return ResponseEntity
+                                .ok()
+                                .headers(headers)
+                                .body(doctorRepository.findById(credential.getRegNo()));
+
                     } else if (Objects.equals(credential.getRole(), "LAB_PERSON")) {
-                        return ResponseEntity.ok(labPersonRepository.findById(credential.getRegNo()));
+                        return ResponseEntity
+                                .ok()
+                                .headers(headers)
+                                .body(labPersonRepository.findById(credential.getRegNo()));
+
                     } else if (Objects.equals(credential.getRole(), "PATIENT")) {
-                        return ResponseEntity.ok(patientRepository.findById(credential.getRegNo()));
+                        return ResponseEntity
+                                .ok()
+                                .headers(headers)
+                                .body(patientRepository.findById(credential.getRegNo()));
                     } else {
                         return ResponseEntity.ok("Admin logged in");
                     }

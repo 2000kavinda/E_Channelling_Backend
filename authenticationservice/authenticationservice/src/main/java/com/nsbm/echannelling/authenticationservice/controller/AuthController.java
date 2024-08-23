@@ -16,7 +16,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRequest userRequest) {
-        return authService.saveUser(userRequest);
+        return ResponseEntity.ok(authService.saveUser(userRequest));
     }
 
     @PutMapping ("/createverification")
