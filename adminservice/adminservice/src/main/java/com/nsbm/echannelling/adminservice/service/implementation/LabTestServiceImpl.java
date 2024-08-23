@@ -12,6 +12,7 @@ public class LabTestServiceImpl implements LabTestService {
     @Autowired
     private LabTestRepository labTestRepository;
 
+    //retriview total of the lab tests available
     @Override
     public ResponseEntity<?> getLabTestCount() {
         try {

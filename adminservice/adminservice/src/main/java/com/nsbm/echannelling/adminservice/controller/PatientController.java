@@ -15,24 +15,41 @@ public class PatientController {
     @Autowired
     private PatientServiceImpl patientService;
 
+    // get all patients
     @GetMapping("/all")
     public ResponseEntity<?> getAllPatients() {
         return patientService.getAllPatients();
 
     }
 
+    /**
+     * update existing selected patient
+     * @param pId
+     * @param patient
+     * @return
+     */
     @PutMapping("/update")
     public ResponseEntity<?> updatePatient(@RequestParam Long pId, @RequestBody Patient patient) {
         return patientService.updatePatient(pId,patient);
 
     }
 
+    /**
+     * delete selected patient
+     * @param pId
+     * @return
+     */
     @DeleteMapping("/delete")
     public ResponseEntity<?> deletePatient(@RequestParam Long pId) {
         return patientService.deletePatient(pId);
 
     }
 
+    /**
+     * search existing patients by the name
+     * @param name
+     * @return
+     */
     @GetMapping("/search")
     public ResponseEntity<?> searchPatientsByName(@RequestParam String name) {
         return ResponseEntity.ok(patientService.searchPatientsByName(name));

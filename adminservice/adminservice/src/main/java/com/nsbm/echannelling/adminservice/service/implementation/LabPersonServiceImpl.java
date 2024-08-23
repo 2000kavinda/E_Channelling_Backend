@@ -21,6 +21,7 @@ public class LabPersonServiceImpl implements LabPersonService {
     @Autowired
     private CredentialsRepository credentialsRepository;
 
+    //get all lab person details
     @Override
     public ResponseEntity<?> getAllLabPerson() {
         try {
@@ -31,6 +32,12 @@ public class LabPersonServiceImpl implements LabPersonService {
         }
     }
 
+    /**
+     * update the details of existing lab person
+     * @param lPRegNo
+     * @param newLabPerson
+     * @return
+     */
     @Override
     public ResponseEntity<?>  updateLabPerson(Long lPRegNo, LabPerson newLabPerson) {
         try {
@@ -40,7 +47,6 @@ public class LabPersonServiceImpl implements LabPersonService {
             labPerson.setLabNo(newLabPerson.getLabNo());
             labPerson.setLPQualification(newLabPerson.getLPQualification());
 
-
             return  ResponseEntity.ok(labPersonRepository.save(labPerson));
 
         } catch (Exception e) {
@@ -49,6 +55,11 @@ public class LabPersonServiceImpl implements LabPersonService {
         }
     }
 
+    /**
+     * delete the existing lab person details from lab person and credential DBs
+     * @param lPRegNo
+     * @return
+     */
     @Override
     public ResponseEntity<?>  deleteLabPerson(Long lPRegNo) {
         try {
@@ -69,6 +80,11 @@ public class LabPersonServiceImpl implements LabPersonService {
         }
     }
 
+    /**
+     * search lab person by typing the name
+     * @param lPName
+     * @return
+     */
     @Override
     public ResponseEntity<?> searchLabPersonByName(String lPName) {
         try {

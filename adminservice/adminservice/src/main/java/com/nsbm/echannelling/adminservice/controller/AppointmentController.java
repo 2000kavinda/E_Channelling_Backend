@@ -14,6 +14,7 @@ public class AppointmentController {
     @Autowired
     private AppointmentServiceImpl appointmentService;
 
+    //get the total count of booked appointments
     @GetMapping("/count")
     public ResponseEntity<?> getAppointmentCount() {
         return ResponseEntity.ok(appointmentService.getAppointmentCount());

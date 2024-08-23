@@ -17,37 +17,65 @@ public class ScheduleController {
     @Autowired
     ScheduleServiceImpl scheduleService;
 
-
-
+    /**
+     * save a schedule
+     * @param schedule
+     * @return
+     */
     @PostMapping("save")
     public String saveSchedules(@RequestBody Schedule schedule) {
         return scheduleService.saveSchedule(schedule);
     }
 
+    /**
+     * retriview all schedules
+     * @return
+     */
     @GetMapping("/all")
     public ResponseEntity<?> getAllSchedulesWithDoctorName() {
         return scheduleService.getAllSchedules();
 
     }
 
+    /**
+     * search schedule by the date
+     * @param date
+     * @return
+     */
     @GetMapping("/search")
     public ResponseEntity<?> searchSchedulesWithDoctorName(@RequestParam LocalDate date) {
         return scheduleService.searchScheduleWithId(date);
 
     }
 
+    /**
+     * update the existing selected schedule
+     * @param id
+     * @param schedule
+     * @return
+     */
     @PutMapping("/update")
     public ResponseEntity<?> updateSchedule(@RequestParam Long id,@RequestBody Schedule schedule) {
         return scheduleService.updateSchedule(id,schedule);
 
     }
 
+    /**
+     * delete selected schedule
+     * @param id
+     * @return
+     */
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteSchedule(@RequestParam Long id) {
         return scheduleService.deleteSchedule(id);
 
     }
 
+    /**
+     * search schedule by DR. name
+     * @param drNamePart
+     * @return
+     */
     @GetMapping("/searchN")
     public ResponseEntity<?> getSchedulesByDoctorNamePart(@RequestParam String drNamePart) {
         return ResponseEntity.ok(scheduleService.getSchedulesByDoctorNamePart(drNamePart));

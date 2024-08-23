@@ -14,6 +14,7 @@ public class LabTestController {
     @Autowired
     private LabTestServiceImpl labTestService;
 
+    //get total count of available lab tests
     @GetMapping("/count")
     public ResponseEntity<?> getLabTestCount() {
         return ResponseEntity.ok(labTestService.getLabTestCount());

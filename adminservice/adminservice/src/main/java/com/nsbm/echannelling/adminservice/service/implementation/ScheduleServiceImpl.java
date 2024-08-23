@@ -18,6 +18,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    /**
+     * save a new schedule to the DB
+     * @param schedule
+     * @return
+     */
     @Override
     public String saveSchedule(Schedule schedule) {
         try {
@@ -28,6 +33,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    /**
+     * view all schedules
+     * @return
+     */
     @Override
     public ResponseEntity<?>  getAllSchedules() {
         try {
@@ -38,6 +47,11 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    /**
+     * filter shedules by the date
+     * @param date
+     * @return
+     */
     @Override
     public ResponseEntity<?>  searchScheduleWithId(LocalDate date) {
         try {
@@ -48,6 +62,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    /**
+     * update existing schedule information
+     * @param sId
+     * @param newSchedule
+     * @return
+     */
     @Override
     public ResponseEntity<?>  updateSchedule(Long sId,Schedule newSchedule) {
         try {
@@ -66,6 +86,11 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    /**
+     * delete existing schedule
+     * @param sId
+     * @return
+     */
     @Override
     public ResponseEntity<?>  deleteSchedule(Long sId) {
         try {
@@ -85,6 +110,11 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    /**
+     * search schedule by entering DR. name
+     * @param drNamePart
+     * @return
+     */
     @Override
     public ResponseEntity<?> getSchedulesByDoctorNamePart(String drNamePart) {
         try {

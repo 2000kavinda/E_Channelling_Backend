@@ -20,6 +20,7 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     private CredentialsRepository credentialsRepository;
 
+    //view all patients
     @Override
     public ResponseEntity<?> getAllPatients() {
         try {
@@ -30,6 +31,12 @@ public class PatientServiceImpl implements PatientService {
         }
     }
 
+    /**
+     * update existing patient information
+     * @param pId
+     * @param newPatient
+     * @return
+     */
     @Override
     public ResponseEntity<?>  updatePatient(Long pId, Patient newPatient) {
         try {
@@ -48,6 +55,11 @@ public class PatientServiceImpl implements PatientService {
         }
     }
 
+    /**
+     * delete existing patient from patient and credential DBs
+     * @param pId
+     * @return
+     */
     @Override
     public ResponseEntity<?>  deletePatient(Long pId) {
         try {
@@ -68,6 +80,7 @@ public class PatientServiceImpl implements PatientService {
         }
     }
 
+    //search patient by name
     @Override
     public ResponseEntity<?> searchPatientsByName(String name) {
         try {

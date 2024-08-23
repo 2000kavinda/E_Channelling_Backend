@@ -20,6 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     private CredentialsRepository credentialsRepository;
 
+    //view total count of doctors available
     @Override
     public ResponseEntity<?> getDoctorCount() {
         try {
@@ -30,6 +31,7 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
+    //view details of all doctors available
     @Override
     public ResponseEntity<?> getAllDoctors() {
         try {
@@ -40,6 +42,12 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
+    /**
+     * update existing selected doctor details
+     * @param drRegNo
+     * @param newDoctor
+     * @return
+     */
     @Override
     public ResponseEntity<?>  updateDoctor(Long drRegNo, Doctor newDoctor) {
         try {
@@ -51,7 +59,6 @@ public class DoctorServiceImpl implements DoctorService {
             doctor.setProfileImage(newDoctor.getProfileImage());
             doctor.setDrQualification(newDoctor.getDrQualification());
 
-
             return  ResponseEntity.ok(doctorRepository.save(doctor));
 
         } catch (Exception e) {
@@ -60,6 +67,11 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
+    /**
+     * delete existing doctor details from doctor and credential DBs
+     * @param drRegNo
+     * @return
+     */
     @Override
     public ResponseEntity<?>  deleteDoctor(Long drRegNo) {
         try {
@@ -80,6 +92,11 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
+    /**
+     * search DR. by typing the name
+     * @param name
+     * @return
+     */
     @Override
     public ResponseEntity<?> searchDoctorByName(String name) {
        try {

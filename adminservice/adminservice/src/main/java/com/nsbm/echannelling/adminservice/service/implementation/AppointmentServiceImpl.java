@@ -12,6 +12,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
+    //retriview tha total of the appointments
     @Override
     public ResponseEntity<?> getAppointmentCount() {
         try {
