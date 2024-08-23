@@ -12,5 +12,5 @@ public interface LabPersonService {
 
     ResponseEntity<?> deleteLabPerson(Long lPRegNo);
 
-    List<LabPerson> searchLabPersonByName(String lPName);
+    ResponseEntity<?> searchLabPersonByName(String lPName);
 }

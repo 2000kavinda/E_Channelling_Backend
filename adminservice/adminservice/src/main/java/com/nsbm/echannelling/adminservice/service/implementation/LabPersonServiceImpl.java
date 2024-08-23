@@ -1,7 +1,10 @@
-package com.nsbm.echannelling.adminservice.service;
+package com.nsbm.echannelling.adminservice.service.implementation;
 
+import com.nsbm.echannelling.adminservice.model.Credential;
 import com.nsbm.echannelling.adminservice.model.LabPerson;
+import com.nsbm.echannelling.adminservice.repository.CredentialsRepository;
 import com.nsbm.echannelling.adminservice.repository.LabPersonRepository;
+import com.nsbm.echannelling.adminservice.service.LabPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,14 +18,16 @@ public class LabPersonServiceImpl implements LabPersonService {
     @Autowired
     private LabPersonRepository labPersonRepository;
 
+    @Autowired
+    private CredentialsRepository credentialsRepository;
+
     @Override
     public ResponseEntity<?> getAllLabPerson() {
         try {
             return  ResponseEntity.ok(labPersonRepository.findAll());
 
         } catch (Exception e) {
-
-            return ResponseEntity.badRequest().body("Something went wrong");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -51,6 +56,7 @@ public class LabPersonServiceImpl implements LabPersonService {
             if (credentialOptional.isPresent())
             {
                 labPersonRepository.deleteById(lPRegNo);
+                credentialsRepository.deleteById(lPRegNo);
 
                 return ResponseEntity.ok("LabPerson deleted successfully");
             }else {
@@ -64,7 +70,12 @@ public class LabPersonServiceImpl implements LabPersonService {
     }
 
     @Override
-    public List<LabPerson> searchLabPersonByName(String lPName) {
-        return labPersonRepository.findByNameContaining(lPName);
+    public ResponseEntity<?> searchLabPersonByName(String lPName) {
+        try {
+            return ResponseEntity.ok(labPersonRepository.findByNameContaining(lPName));
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

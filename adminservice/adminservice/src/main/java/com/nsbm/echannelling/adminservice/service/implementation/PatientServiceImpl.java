@@ -1,7 +1,9 @@
-package com.nsbm.echannelling.adminservice.service;
+package com.nsbm.echannelling.adminservice.service.implementation;
 
 import com.nsbm.echannelling.adminservice.model.Patient;
+import com.nsbm.echannelling.adminservice.repository.CredentialsRepository;
 import com.nsbm.echannelling.adminservice.repository.PatientRepository;
+import com.nsbm.echannelling.adminservice.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,16 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private CredentialsRepository credentialsRepository;
+
     @Override
     public ResponseEntity<?> getAllPatients() {
         try {
             return  ResponseEntity.ok(patientRepository.findAll());
 
         } catch (Exception e) {
-
-            return ResponseEntity.badRequest().body("Something went wrong");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -51,6 +55,7 @@ public class PatientServiceImpl implements PatientService {
             if (credentialOptional.isPresent())
             {
                 patientRepository.deleteById(pId);
+                credentialsRepository.deleteById(pId);
 
                 return ResponseEntity.ok("Patient deleted successfully");
             }else {
@@ -64,7 +69,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<Patient> searchPatientsByName(String name) {
-        return patientRepository.findByNameContaining(name);
+    public ResponseEntity<?> searchPatientsByName(String name) {
+        try {
+            return ResponseEntity.ok(patientRepository.findByNameContaining(name));
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

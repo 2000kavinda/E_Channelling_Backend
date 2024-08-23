@@ -2,7 +2,7 @@ package com.nsbm.echannelling.adminservice.controller;
 
 import com.nsbm.echannelling.adminservice.dto.ScheduleDTO;
 import com.nsbm.echannelling.adminservice.model.Schedule;
-import com.nsbm.echannelling.adminservice.service.ScheduleServiceImpl;
+import com.nsbm.echannelling.adminservice.service.implementation.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +49,7 @@ public class ScheduleController {
     }
 
     @GetMapping("/searchN")
-    public ResponseEntity<List<ScheduleDTO>> getSchedulesByDoctorNamePart(@RequestParam String drNamePart) {
-        List<ScheduleDTO> schedules = scheduleService.getSchedulesByDoctorNamePart(drNamePart);
-        return ResponseEntity.ok(schedules);
+    public ResponseEntity<?> getSchedulesByDoctorNamePart(@RequestParam String drNamePart) {
+        return ResponseEntity.ok(scheduleService.getSchedulesByDoctorNamePart(drNamePart));
     }
 }

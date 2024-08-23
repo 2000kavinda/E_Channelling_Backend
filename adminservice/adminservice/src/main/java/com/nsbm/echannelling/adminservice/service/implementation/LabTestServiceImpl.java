@@ -1,12 +1,13 @@
-package com.nsbm.echannelling.adminservice.service;
+package com.nsbm.echannelling.adminservice.service.implementation;
 
 import com.nsbm.echannelling.adminservice.repository.LabTestRepository;
+import com.nsbm.echannelling.adminservice.service.LabTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LabTestServiceImpl implements LabTestService{
+public class LabTestServiceImpl implements LabTestService {
 
     @Autowired
     private LabTestRepository labTestRepository;
@@ -17,7 +18,7 @@ public class LabTestServiceImpl implements LabTestService{
             long count = labTestRepository.count();
             return ResponseEntity.ok(count);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Something went wrong");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

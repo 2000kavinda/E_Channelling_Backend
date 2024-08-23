@@ -14,5 +14,5 @@ public interface DoctorService {
 
     ResponseEntity<?>  deleteDoctor(Long drRegNo);
 
-    List<Doctor> searchDoctorByName(String name);
+    ResponseEntity<?> searchDoctorByName(String name);
 }

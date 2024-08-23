@@ -1,8 +1,9 @@
-package com.nsbm.echannelling.adminservice.service;
+package com.nsbm.echannelling.adminservice.service.implementation;
 
 import com.nsbm.echannelling.adminservice.dto.ScheduleDTO;
 import com.nsbm.echannelling.adminservice.model.Schedule;
 import com.nsbm.echannelling.adminservice.repository.ScheduleRepository;
+import com.nsbm.echannelling.adminservice.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             return  ResponseEntity.ok(scheduleRepository.findAllSchedulesWithDrName());
 
         } catch (Exception e) {
-
-            return ResponseEntity.badRequest().body("Something went wrong");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -44,8 +44,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             return  ResponseEntity.ok(scheduleRepository.findByDate(date));
 
         } catch (Exception e) {
-
-            return ResponseEntity.badRequest().body("Something went wrong");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -87,8 +86,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<ScheduleDTO> getSchedulesByDoctorNamePart(String drNamePart) {
-        return scheduleRepository.findSchedulesByDoctorNamePart(drNamePart);
+    public ResponseEntity<?> getSchedulesByDoctorNamePart(String drNamePart) {
+        try {
+            return ResponseEntity.ok(scheduleRepository.findSchedulesByDoctorNamePart(drNamePart));
+        }catch (Exception e) {
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 

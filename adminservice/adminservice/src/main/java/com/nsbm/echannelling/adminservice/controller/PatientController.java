@@ -1,7 +1,7 @@
 package com.nsbm.echannelling.adminservice.controller;
 
 import com.nsbm.echannelling.adminservice.model.Patient;
-import com.nsbm.echannelling.adminservice.service.PatientServiceImpl;
+import com.nsbm.echannelling.adminservice.service.implementation.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +34,7 @@ public class PatientController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Patient>> searchPatientsByName(@RequestParam String name) {
-        List<Patient> patients = patientService.searchPatientsByName(name);
-        return ResponseEntity.ok(patients);
+    public ResponseEntity<?> searchPatientsByName(@RequestParam String name) {
+        return ResponseEntity.ok(patientService.searchPatientsByName(name));
     }
 }

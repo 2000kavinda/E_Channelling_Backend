@@ -1,6 +1,6 @@
 package com.nsbm.echannelling.adminservice.controller;
 
-import com.nsbm.echannelling.adminservice.service.LabTestServiceImpl;
+import com.nsbm.echannelling.adminservice.service.implementation.LabTestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

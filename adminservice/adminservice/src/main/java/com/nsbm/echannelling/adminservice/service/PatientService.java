@@ -12,5 +12,5 @@ public interface PatientService {
 
     ResponseEntity<?>  deletePatient(Long pId);
 
-    List<Patient> searchPatientsByName(String name);
+    ResponseEntity<?> searchPatientsByName(String name);
 }

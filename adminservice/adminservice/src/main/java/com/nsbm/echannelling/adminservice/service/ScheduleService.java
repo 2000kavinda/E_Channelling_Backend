@@ -18,5 +18,5 @@ public interface ScheduleService {
 
     ResponseEntity<?> deleteSchedule(Long sId);
 
-    List<ScheduleDTO> getSchedulesByDoctorNamePart(String drNamePart);
+    ResponseEntity<?> getSchedulesByDoctorNamePart(String drNamePart);
 }

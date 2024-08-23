@@ -1,7 +1,9 @@
-package com.nsbm.echannelling.adminservice.service;
+package com.nsbm.echannelling.adminservice.service.implementation;
 
 import com.nsbm.echannelling.adminservice.model.Doctor;
+import com.nsbm.echannelling.adminservice.repository.CredentialsRepository;
 import com.nsbm.echannelling.adminservice.repository.DoctorRepository;
+import com.nsbm.echannelling.adminservice.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DoctorServiceImpl implements DoctorService{
+public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
     private DoctorRepository doctorRepository;
+
+    @Autowired
+    private CredentialsRepository credentialsRepository;
 
     @Override
     public ResponseEntity<?> getDoctorCount() {
@@ -21,7 +26,7 @@ public class DoctorServiceImpl implements DoctorService{
             long count = doctorRepository.count();
             return ResponseEntity.ok(count);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Something went wrong");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -30,9 +35,8 @@ public class DoctorServiceImpl implements DoctorService{
         try {
             return  ResponseEntity.ok(doctorRepository.findAll());
 
-        } catch (Exception e) {
-
-            return ResponseEntity.badRequest().body("Something went wrong");
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -63,6 +67,7 @@ public class DoctorServiceImpl implements DoctorService{
             if (credentialOptional.isPresent())
             {
                 doctorRepository.deleteById(drRegNo);
+                credentialsRepository.deleteById(drRegNo);
 
                 return ResponseEntity.ok("Doctor deleted successfully");
             }else {
@@ -76,8 +81,12 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
-    public List<Doctor> searchDoctorByName(String name) {
-        return doctorRepository.findByNameContaining(name);
+    public ResponseEntity<?> searchDoctorByName(String name) {
+       try {
+            return ResponseEntity.ok(doctorRepository.findByNameContaining(name));
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 }
