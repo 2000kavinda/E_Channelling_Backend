@@ -182,18 +182,21 @@ public class AuthServiceImpl implements AuthService {
                     HttpHeaders headers = new HttpHeaders();
                     headers.add("status", "Success");
                     if (Objects.equals(credential.getRole(), "DOCTOR")) {
+                        headers.add("role", "DOCTOR");
                         return ResponseEntity
                                 .ok()
                                 .headers(headers)
                                 .body(doctorRepository.findById(credential.getRegNo()));
 
                     } else if (Objects.equals(credential.getRole(), "LAB_PERSON")) {
+                        headers.add("role", "LAB_PERSON");
                         return ResponseEntity
                                 .ok()
                                 .headers(headers)
                                 .body(labPersonRepository.findById(credential.getRegNo()));
 
                     } else if (Objects.equals(credential.getRole(), "PATIENT")) {
+                        headers.add("role", "PATIENT");
                         return ResponseEntity
                                 .ok()
                                 .headers(headers)
