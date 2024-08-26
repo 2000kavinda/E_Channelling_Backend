@@ -11,11 +11,16 @@ import java.util.List;
 @Service
 public class DoctorDetailsServiceImpl implements DoctorDetailsService {
 
-    // Adds the DoctorDetailsTemp repository requirement.
+    /**
+     *  Adds the DoctorDetailsTemp repository requirement.
+     */
     @Autowired
     private DoctorDetailsTempRepo doctordetails_temprepo;
 
-    // Retrieves all doctor details from the database
+    /**
+     *  // Retrieves all doctor details from the database
+     * @return
+     */
     @Override
     public ResponseEntity<?> getAllDoctorDetails() {
 try
@@ -31,13 +36,22 @@ try
  }
     }
 
-    // Retrieves doctor details by  filtering their registration number
+    /**
+     *  Retrieves doctor details by  filtering their registration number
+     * @param doctorRegNo
+     * @return
+     */
+
     @Override
     public DoctorDetailsTemp getDoctorDetailsByRegNo(Long doctorRegNo) {
         return doctordetails_temprepo.findByDoctorRegNo(doctorRegNo);
     }
 
-    // Saves doctor details within the db
+    /**
+     * Saves doctor details within the db
+     * @param doctorDetails
+     * @return
+     */
     @Override
     public DoctorDetailsTemp saveDoctorDetails(DoctorDetailsTemp doctorDetails) {
         return doctordetails_temprepo.save(doctorDetails);

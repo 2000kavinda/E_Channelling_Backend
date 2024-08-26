@@ -20,18 +20,31 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private PatientDoctorRepo patient_DoctorRepo;
 
+    /**
+     * get schedule lists from doctor id
+     * @param drRegNo
+     * @return
+     */
     @Override
     public List<ScheduleTemp> getSchedulesByDoctorId(Long drRegNo) {
         return schedule_repo.findByDrRegNo(drRegNo);
     }
 
-    //Add temporary schedules
+    /**
+     *Add temporary schedules
+     * @param scheduleTemp
+     * @return
+     */
     @Override
     public ScheduleTemp addSchedule(ScheduleTemp scheduleTemp) {
         return schedule_repo.save(scheduleTemp);
     }
 
-    //get relevent dates for each specific doctor
+    /**
+     *get relevent dates for each specific doctor
+     * @param drRegNo
+     * @return
+     */
     @Override
     public List<LocalDate> getBookingDatesByDoctorId(Long drRegNo) {
         List<ScheduleTemp> schedules = schedule_repo.findByDrRegNo(drRegNo);
@@ -40,13 +53,14 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .collect(Collectors.toList());
     }
 
-    //get doctor registration id
+    /**
+     *get doctor registration id
+     * @param doctorId
+     * @return
+     */
     @Override
     public Optional<PatientDoctor> getDoctorById(Long doctorId) {
         return patient_DoctorRepo.findById(doctorId);
     }
-
-
-
 
 }

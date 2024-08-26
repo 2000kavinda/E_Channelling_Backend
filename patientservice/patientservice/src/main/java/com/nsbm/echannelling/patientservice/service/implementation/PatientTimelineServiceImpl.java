@@ -13,12 +13,17 @@ import java.util.Optional;
 @Service
 public class PatientTimelineServiceImpl implements PatientTimelineService {
 
-
-    // inserts the repository dependency for PatientTimeline
+    /**
+     *inserts the repository dependency for PatientTimeline
+     */
     @Autowired
     private PatientTimelineRepository patient_timeline_repository;
-
-    // Saves a new timeline for a specific patient
+    /**
+     * Saves a new timeline for a specific patient
+     * @param patientId
+     * @param patient_timeline
+     * @return
+     */
 @Override
     public ResponseEntity<?> saveTimeLine(Long patientId, PatientTimeline patient_timeline) {
         try {
@@ -30,13 +35,23 @@ public class PatientTimelineServiceImpl implements PatientTimelineService {
         }
     }
 
-    // Retrieves all timelines for a specific patient by filtering from patientId
+    /**
+     *Retrieves all timelines for a specific patient by filtering from patientId
+     * @param patientId
+     * @return
+     */
     @Override
     public List<PatientTimeline> getTimelinesByPatientId(Long patientId) {
         return patient_timeline_repository.findByPatientId(patientId);
     }
 
-    // Updates an existing timeline for a specific patient
+    /**
+     *Updates an existing timeline for a specific patient
+     * @param patientId
+     * @param timelineId
+     * @param updatedTimeline
+     * @return
+     */
     @Override
     public ResponseEntity<?> updateTimeLine(Long patientId, Long timelineId, PatientTimeline updatedTimeline) {
         try {

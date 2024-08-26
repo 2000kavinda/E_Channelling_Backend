@@ -11,24 +11,38 @@ import java.util.Optional;
 @Service
 public class PatientAppoinmentServiceImpl implements PatientAppoinmentService {
 
+    /**
+     *  Inserts the repository dependency for PatientAppoinment
+     */
 
-    // Inserts the repository dependency for PatientAppoinment
     @Autowired
     private PatientAppoinmentRepo patient_appoinmentRepo;
 
-    //book and save an appoinment in db
+    /**
+     *book and save an appoinment in db
+     * @param appointment
+     * @return
+     */
+
     @Override
     public PatientAppoinment bookAppointment(PatientAppoinment appointment) {
         return patient_appoinmentRepo.save(appointment);
     }
 
-    //Retrieves an appointment by its AppointmentId
-@Override
+    /**
+     * Retrieves an appointment by its AppointmentId
+     * @param id
+     * @return
+     */
+    @Override
     public Optional<PatientAppoinment> getAppointmentById(Long id) {
         return patient_appoinmentRepo.findById(id);
     }
 
-    // Retrieves all appointments from the db(appoinment list)
+    /**
+     *  Retrieves all appointments from the db(appoinment list)
+     * @return
+     */
     @Override
     public List<PatientAppoinment> getAllAppointments() {
         return patient_appoinmentRepo.findAll();

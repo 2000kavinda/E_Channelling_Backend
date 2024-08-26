@@ -19,9 +19,6 @@ import org.springframework.stereotype.Service;
 //       return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
 //      }
 
-
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +28,13 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
     @Autowired
     private PatientNotificationRepo notificationRepository;
 
-    //  Add new notification in patient side
+    /**
+     * Add new notification in patient side
+     * @param doctorId
+     * @param notification
+     * @return
+     */
+
     @Override
     public ResponseEntity<?> addNotification(Long doctorId, PatientNotification notification) {
         try {
@@ -46,13 +49,22 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
         }
     }
 
-    // Retrieves all notifications
+    /**
+     *Retrieves all notifications
+     * @param doctorId
+     * @return
+     */
+
     @Override
     public List<PatientNotification> getNotificationsByDoctorId(Long doctorId) {
         return notificationRepository.findByDoctorId(doctorId);
     }
 
-    //delete the specific notification from its ID
+    /**
+     * delete the specific notification from its ID
+     * @param notificationId
+     * @return
+     */
     @Override
     public ResponseEntity<?> deleteNotification(Long notificationId) {
         try {
@@ -63,7 +75,11 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
         }
     }
 
-    // Marks a notification as read by its ID
+    /**
+     * Marks a notification as read by its ID
+     * @param notificationId
+     * @return
+     */
     @Override
     public ResponseEntity<?> markAsRead(Long notificationId) {
         try {
@@ -81,7 +97,11 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
         }
     }
 
-    // Marks a notification as a favorite by its ID
+    /**
+     *Marks a notification as a favorite by its ID
+     * @param notificationId
+     * @return
+     */
     @Override
     public ResponseEntity<?> markAsFavorite(Long notificationId) {
         try {
