@@ -11,15 +11,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/patients")
 public class PatientController {
-
+    /**
+     * Injects the PatientServiceImpl into the controller
+     */
     @Autowired
     private PatientServiceImpl patientService;
 
+    /**
+     * Endpoint to retrieve all patients.
+     * @return
+     */
     @GetMapping
     public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
     }
 
+    /**
+     * Endpoint to retrieve a specific patient by their Patient ID.
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
         return patientService.getPatientById(id)
@@ -27,11 +38,24 @@ public class PatientController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    /**
+     * Endpoint to add a new patient.
+     * Accepts a Patient object in the request body and saves it.
+     * @param patient
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
         return ResponseEntity.ok(patientService.savePatient(patient));
     }
 
+    /**
+     *Endpoint to update an existing patient's details.
+     *Accepts the patient ID in the URL path and a Patient object with updated details in the request body.
+     * @param id
+     * @param patient
+     * @return
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
         return ResponseEntity.ok(patientService.updatePatient(id, patient));

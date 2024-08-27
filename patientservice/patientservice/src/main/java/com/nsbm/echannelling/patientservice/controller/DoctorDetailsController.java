@@ -11,15 +11,26 @@ import java.util.List;
 @RequestMapping("/api/doctor-details")
 public class DoctorDetailsController {
 
-
+    /**
+     * Insert the DoctorDetailsServiceImpl to manage doctor details-related operations
+     */
     @Autowired
     private DoctorDetailsServiceImpl doctorDetailsService;
 
+    /**
+     * Endpoint to retrieve list of  all doctor details
+     * @return
+     */
     @GetMapping("/all")
     public ResponseEntity<?> getAllDoctorDetails() {
         return doctorDetailsService.getAllDoctorDetails();
     }
 
+    /**
+     * Endpoint to retrieve doctor details by their registration number(RegNo)
+     * @param doctorRegNo
+     * @return
+     */
     @GetMapping("/{doctorRegNo}")
     public ResponseEntity<DoctorDetailsTemp> getDoctorDetailsByRegNo(@PathVariable Long doctorRegNo) {
         DoctorDetailsTemp doctorDetails = doctorDetailsService.getDoctorDetailsByRegNo(doctorRegNo);
@@ -30,6 +41,11 @@ public class DoctorDetailsController {
         }
     }
 
+    /**
+     * Endpoint to add new doctor details
+     * @param doctorDetails
+     * @return
+     */
     @PostMapping("/add")
     public ResponseEntity<String> addDoctorDetails(@RequestBody DoctorDetailsTemp doctorDetails) {
         DoctorDetailsTemp savedDoctorDetails = doctorDetailsService.saveDoctorDetails(doctorDetails);

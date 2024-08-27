@@ -49,7 +49,6 @@ public class PatientServiceImpl implements PatientService {
      * @param patient
      * @return
      */
-
     @Override
     public Patient updatePatient(Long id, Patient patient) {
         patient.setPatient_id(id);

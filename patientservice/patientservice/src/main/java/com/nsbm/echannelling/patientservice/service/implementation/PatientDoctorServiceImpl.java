@@ -12,10 +12,8 @@ import java.util.Optional;
 @Service
 public class PatientDoctorServiceImpl implements PatientDoctorService {
 
-   
     @Autowired
     private PatientDoctorRepo patient_doctorRepo;
-
     /**
      * temorary add the doctors
      * @return
@@ -38,7 +36,6 @@ public class PatientDoctorServiceImpl implements PatientDoctorService {
      *  this is for the Get Doctors List --->first endpoint
      * @return
      */
-
     @Override
     public List<PatientDoctor> getAllDoctors() {
         return patient_doctorRepo.findAll();
@@ -51,7 +48,6 @@ public class PatientDoctorServiceImpl implements PatientDoctorService {
      * @param type
      * @return
      */
-
     @Override
     public List<PatientDoctor> searchDoctorsByFilters(String name, String specialty, String type) {
         return patient_doctorRepo.searchDoctorsByFilter(name, specialty, type);

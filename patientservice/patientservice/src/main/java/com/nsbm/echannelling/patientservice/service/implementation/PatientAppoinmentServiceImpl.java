@@ -14,7 +14,6 @@ public class PatientAppoinmentServiceImpl implements PatientAppoinmentService {
     /**
      *  Inserts the repository dependency for PatientAppoinment
      */
-
     @Autowired
     private PatientAppoinmentRepo patient_appoinmentRepo;
 
@@ -23,7 +22,6 @@ public class PatientAppoinmentServiceImpl implements PatientAppoinmentService {
      * @param appointment
      * @return
      */
-
     @Override
     public PatientAppoinment bookAppointment(PatientAppoinment appointment) {
         return patient_appoinmentRepo.save(appointment);

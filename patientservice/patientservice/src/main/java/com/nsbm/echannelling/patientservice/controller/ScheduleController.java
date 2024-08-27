@@ -16,29 +16,52 @@ import java.util.Optional;
 @RequestMapping("/api/schedules")
 public class ScheduleController {
 
+    /**
+     * Injects the ScheduleServiceImpl into the controller
+     */
     @Autowired
     private ScheduleServiceImpl scheduleTempService;
+    /**
+     * Injects the PatientDoctorServiceImpl into the controller
+     */
     @Autowired
     private PatientDoctorServiceImpl patient_DoctorService;
 
-    // Endpoint to add a new schedule
+    /**
+     * Endpoint to add a new schedule.
+     * @param scheduleTemp
+     * @return
+     */
     @PostMapping
     public ScheduleTemp addSchedule(@RequestBody ScheduleTemp scheduleTemp) {
         return scheduleTempService.addSchedule(scheduleTemp);
     }
 
-    // Endpoint to get schedules details by doctor ID
+    /**
+     * Endpoint to get schedules details by doctor ID
+     * @param doctorId
+     * @return
+     */
     @GetMapping("/{doctorId}")
     public List<ScheduleTemp> getSchedulesByDoctorId(@PathVariable Long doctorId) {
         return scheduleTempService.getSchedulesByDoctorId(doctorId);
     }
 
+    /**
+     *Endpoint to retrieve available booking dates by doctor ID.
+     * @param doctorId
+     * @return
+     */
     @GetMapping("/{doctorId}/dates")
     public List<LocalDate> getBookingDatesByDoctorId(@PathVariable Long doctorId) {
         return scheduleTempService.getBookingDatesByDoctorId(doctorId);
     }
 
-    // Endpoint to retrieve doctor ID by doctor ID
+    /**
+     * Endpoint to retrieve doctor ID by doctor ID
+     * @param doctorId
+     * @return
+     */
     @GetMapping("/info/{doctorId}")
     public ResponseEntity<Long> getDoctorIdById(@PathVariable Long doctorId) {
         Optional<PatientDoctor> doctor = patient_DoctorService.getDoctorById(doctorId);

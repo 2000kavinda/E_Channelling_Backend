@@ -41,7 +41,6 @@ try
      * @param doctorRegNo
      * @return
      */
-
     @Override
     public DoctorDetailsTemp getDoctorDetailsByRegNo(Long doctorRegNo) {
         return doctordetails_temprepo.findByDoctorRegNo(doctorRegNo);

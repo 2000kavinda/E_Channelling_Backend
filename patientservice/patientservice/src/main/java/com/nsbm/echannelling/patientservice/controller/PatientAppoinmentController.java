@@ -11,9 +11,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/appointments")
 public class PatientAppoinmentController {
+
+    /**
+     *Injects the PatientAppoinmentServiceImpl into the controller
+     */
     @Autowired
     private PatientAppoinmentServiceImpl patient_appoinmentService;
 
+    /**
+     * Endpoint to book a new appointment.
+     *Accepts a PatientAppoinment object in the request body and perform save it.
+     * @param appointment
+     * @return
+     */
     @PostMapping("/book")
     public ResponseEntity<String> bookAppointment(@RequestBody PatientAppoinment appointment) {
         PatientAppoinment savedAppointment = patient_appoinmentService.bookAppointment(appointment);
@@ -24,14 +34,21 @@ public class PatientAppoinmentController {
         }
     }
 
+    /**
+     * Endpoint to retrieve a specific appointment by its Appoinment ID.
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public PatientAppoinment getAppointmentById(@PathVariable Long id) {
         return patient_appoinmentService.getAppointmentById(id).orElse(null);
     }
 
-
-    // Api for the Hiran doctor side -->Appoinment list
-    // Endpoint to get all booked appointments
+    /**
+     * Api for the Hiran doctor side -->Appoinment list
+     * Endpoint to get all booked appointments
+     * @return
+     */
     @GetMapping("/all")
     public List<PatientAppoinment> getAllAppointments() {
         return patient_appoinmentService.getAllAppointments();

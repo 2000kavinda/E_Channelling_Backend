@@ -34,7 +34,6 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
      * @param notification
      * @return
      */
-
     @Override
     public ResponseEntity<?> addNotification(Long doctorId, PatientNotification notification) {
         try {
@@ -54,7 +53,6 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
      * @param doctorId
      * @return
      */
-
     @Override
     public List<PatientNotification> getNotificationsByDoctorId(Long doctorId) {
         return notificationRepository.findByDoctorId(doctorId);
@@ -65,6 +63,7 @@ public class PatientNotificationServiceImpl implements PatientNotificationServic
      * @param notificationId
      * @return
      */
+
     @Override
     public ResponseEntity<?> deleteNotification(Long notificationId) {
         try {
