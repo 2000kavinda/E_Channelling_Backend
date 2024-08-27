@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LabServiceRepository extends JpaRepository<LabModel, Long> {
     boolean existsByServiceName(String serviceName);
-    isexistbyservicename,
+   // isexistbyservicename,
 }

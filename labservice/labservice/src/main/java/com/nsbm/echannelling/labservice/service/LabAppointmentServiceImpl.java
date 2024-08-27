@@ -31,6 +31,6 @@ public class LabAppointmentServiceImpl implements LabAppointmentService{
     public void deleteAppointment(Long id) {
         repository.deleteById(id);
     }
-    impl package add move srvice impl
-            add doc comments
+  //  impl package add move srvice impl
+          //  add doc comments
 }

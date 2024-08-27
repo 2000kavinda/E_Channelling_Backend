@@ -27,6 +27,7 @@ public class LabAppointmentController {
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
 
+    
     @GetMapping("/appointments/{id}")
     public ResponseEntity<LabAppointmentModel> getAppointmentById(@PathVariable Long id) {
         LabAppointmentModel appointment = labAppointmentService.getAppointmentById(id);
@@ -38,5 +39,5 @@ public class LabAppointmentController {
         labAppointmentService.deleteAppointment(id);
         return new ResponseEntity<>("Appointment deleted successfully", HttpStatus.OK);
     }
-    add comments
+   // add comments
 }

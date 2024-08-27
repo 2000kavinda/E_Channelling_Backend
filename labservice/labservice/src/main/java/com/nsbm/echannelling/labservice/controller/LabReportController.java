@@ -53,7 +53,7 @@ public class LabReportController {
         }
     }
 
-    @GetMapping("/download/{id}")
+    @GetMapping("/view/{id}")
     public ResponseEntity<byte[]> downloadLabReport(@PathVariable Long id) {
         Optional<LabReportModel> labReportOptional = labReportService.getLabReportById(id);
 
@@ -69,7 +69,7 @@ public class LabReportController {
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list/id")
     public ResponseEntity<Iterable<LabReportModel>> listLabReports() {
         return ResponseEntity.ok(labReportService.getAllLabReports());
     }
