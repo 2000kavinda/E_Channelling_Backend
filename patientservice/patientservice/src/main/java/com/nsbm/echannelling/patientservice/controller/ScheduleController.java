@@ -33,7 +33,7 @@ public class ScheduleController {
      * @return
      */
     @PostMapping
-    public ScheduleTemp addSchedule(@RequestBody ScheduleTemp scheduleTemp) {
+    public ResponseEntity<?> addSchedule(@RequestBody ScheduleTemp scheduleTemp) {
         return scheduleTempService.addSchedule(scheduleTemp);
     }
 

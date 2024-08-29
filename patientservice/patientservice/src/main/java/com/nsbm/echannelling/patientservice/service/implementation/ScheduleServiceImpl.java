@@ -6,6 +6,7 @@ import com.nsbm.echannelling.patientservice.repository.PatientDoctorRepo;
 import com.nsbm.echannelling.patientservice.repository.ScheduleRepo;
 import com.nsbm.echannelling.patientservice.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,9 +37,13 @@ public class ScheduleServiceImpl implements ScheduleService {
      * @return
      */
     @Override
-    public ScheduleTemp addSchedule(ScheduleTemp scheduleTemp) {
-        return schedule_repo.save(scheduleTemp);
-    }
+    public ResponseEntity<?> addSchedule(ScheduleTemp scheduleTemp) {
+        try{
+        return ResponseEntity.ok(schedule_repo.save(scheduleTemp));
+    }catch (Exception e) {
+            // Handles any exceptions and returns a bad request response with the error message
+            return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
+        }}
 
     /**
      *get relevent dates for each specific doctor

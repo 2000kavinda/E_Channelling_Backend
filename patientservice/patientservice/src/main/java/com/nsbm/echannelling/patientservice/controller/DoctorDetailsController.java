@@ -32,10 +32,9 @@ public class DoctorDetailsController {
      * @return
      */
     @GetMapping("/{doctorRegNo}")
-    public ResponseEntity<DoctorDetailsTemp> getDoctorDetailsByRegNo(@PathVariable Long doctorRegNo) {
-        DoctorDetailsTemp doctorDetails = doctorDetailsService.getDoctorDetailsByRegNo(doctorRegNo);
-        if (doctorDetails != null) {
-            return ResponseEntity.ok(doctorDetails);
+    public ResponseEntity<?> getDoctorDetailsByRegNo(@PathVariable Long doctorRegNo) {
+        if ( doctorDetailsService.getDoctorDetailsByRegNo(doctorRegNo) != null) {
+            return ResponseEntity.ok( doctorDetailsService.getDoctorDetailsByRegNo(doctorRegNo));
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -47,8 +46,8 @@ public class DoctorDetailsController {
      * @return
      */
     @PostMapping("/add")
-    public ResponseEntity<String> addDoctorDetails(@RequestBody DoctorDetailsTemp doctorDetails) {
-        DoctorDetailsTemp savedDoctorDetails = doctorDetailsService.saveDoctorDetails(doctorDetails);
+    public ResponseEntity<?> addDoctorDetails(@RequestBody DoctorDetailsTemp doctorDetails) {
+        ResponseEntity<?> savedDoctorDetails = doctorDetailsService.saveDoctorDetails(doctorDetails);
 
         if (savedDoctorDetails != null) {
             return ResponseEntity.ok("Doctor details added successfully.");

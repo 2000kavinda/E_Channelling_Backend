@@ -2,6 +2,7 @@ package com.nsbm.echannelling.patientservice.service;
 
 import com.nsbm.echannelling.patientservice.model.PatientDoctor;
 import com.nsbm.echannelling.patientservice.model.ScheduleTemp;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,7 +12,7 @@ public interface ScheduleService {
     List<ScheduleTemp> getSchedulesByDoctorId(Long drRegNo);
 
     //Add temporary schedules
-    ScheduleTemp addSchedule(ScheduleTemp scheduleTemp);
+    ResponseEntity<?> addSchedule(ScheduleTemp scheduleTemp);
 
     //get relevent dates for each specific doctor
     List<LocalDate> getBookingDatesByDoctorId(Long drRegNo);

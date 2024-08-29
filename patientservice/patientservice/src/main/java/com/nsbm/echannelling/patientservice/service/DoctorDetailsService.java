@@ -8,7 +8,7 @@ import java.util.List;
 public interface DoctorDetailsService {
     ResponseEntity<?> getAllDoctorDetails();
 
-    DoctorDetailsTemp getDoctorDetailsByRegNo(Long doctorRegNo);
+    ResponseEntity<?> getDoctorDetailsByRegNo(Long doctorRegNo);
 
-    DoctorDetailsTemp saveDoctorDetails(DoctorDetailsTemp doctorDetails);
+    ResponseEntity<?> saveDoctorDetails(DoctorDetailsTemp doctorDetails);
 }

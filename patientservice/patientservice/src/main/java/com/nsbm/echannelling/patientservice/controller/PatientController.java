@@ -45,7 +45,7 @@ public class PatientController {
      * @return
      */
     @PostMapping
-    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+    public ResponseEntity<?> addPatient(@RequestBody Patient patient) {
         return ResponseEntity.ok(patientService.savePatient(patient));
     }
 
@@ -57,7 +57,7 @@ public class PatientController {
      * @return
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
+    public ResponseEntity<?> updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
         return ResponseEntity.ok(patientService.updatePatient(id, patient));
     }
 }

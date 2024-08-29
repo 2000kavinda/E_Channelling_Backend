@@ -25,8 +25,8 @@ public class PatientAppoinmentController {
      * @return
      */
     @PostMapping("/book")
-    public ResponseEntity<String> bookAppointment(@RequestBody PatientAppoinment appointment) {
-        PatientAppoinment savedAppointment = patient_appoinmentService.bookAppointment(appointment);
+    public ResponseEntity<?> bookAppointment(@RequestBody PatientAppoinment appointment) {
+        ResponseEntity<?> savedAppointment = patient_appoinmentService.bookAppointment(appointment);
         if (savedAppointment != null) {
             return ResponseEntity.ok("Appointment successfully booked.");
         } else {

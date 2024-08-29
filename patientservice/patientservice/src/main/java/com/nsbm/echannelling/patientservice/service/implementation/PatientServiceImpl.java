@@ -4,6 +4,7 @@ import com.nsbm.echannelling.patientservice.model.Patient;
 import com.nsbm.echannelling.patientservice.repository.PatientRepo;
 import com.nsbm.echannelling.patientservice.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,8 +40,14 @@ public class PatientServiceImpl implements PatientService {
      * @return
      */
     @Override
-    public Patient savePatient(Patient patient) {
-        return patientrepo.save(patient);
+    public ResponseEntity<?> savePatient(Patient patient) {
+        try{
+            return ResponseEntity.ok(patientrepo.save(patient));
+        }
+        catch (Exception e) {
+            // Handles any exceptions and returns a bad request response with the error message
+            return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
+        }
     }
 
     /**
@@ -50,8 +57,14 @@ public class PatientServiceImpl implements PatientService {
      * @return
      */
     @Override
-    public Patient updatePatient(Long id, Patient patient) {
+    public ResponseEntity<?> updatePatient(Long id, Patient patient) {
+        try{
         patient.setPatient_id(id);
-        return patientrepo.save(patient);
-    }
-}
+        return ResponseEntity.ok(patientrepo.save(patient));
+        }
+        catch (Exception e) {
+            // Handles any exceptions and returns a bad request response with the error message
+            return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
+        }
+
+}}

@@ -4,6 +4,7 @@ import com.nsbm.echannelling.patientservice.model.PatientAppoinment;
 import com.nsbm.echannelling.patientservice.repository.PatientAppoinmentRepo;
 import com.nsbm.echannelling.patientservice.service.PatientAppoinmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,15 @@ public class PatientAppoinmentServiceImpl implements PatientAppoinmentService {
      * @return
      */
     @Override
-    public PatientAppoinment bookAppointment(PatientAppoinment appointment) {
-        return patient_appoinmentRepo.save(appointment);
+    public ResponseEntity<?> bookAppointment(PatientAppoinment appointment) {
+
+       try{
+           return ResponseEntity.ok(patient_appoinmentRepo.save(appointment));
+       }
+       catch (Exception e) {
+           //Handles the exceptions
+           return ResponseEntity.badRequest().body("Something went wrong: " + e.getMessage());
+       }
     }
 
     /**
