@@ -12,5 +12,5 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleGlobalException(Exception ex, WebRequest request) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
-    
+
 }
