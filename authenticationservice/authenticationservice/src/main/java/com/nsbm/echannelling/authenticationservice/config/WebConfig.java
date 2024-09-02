@@ -1,4 +1,4 @@
-package com.nsbm.echannelling.authenticationservice.Configs;
+package com.nsbm.echannelling.authenticationservice.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
