@@ -174,7 +174,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public ResponseEntity<?> login(String email, String password) {
-       try {
+        try {
             Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
             if (credentialOptional.isPresent()) {
                 Credential credential = credentialOptional.get();
@@ -207,14 +207,11 @@ public class AuthServiceImpl implements AuthService {
 
                 } else {
                     return ResponseEntity.ok("Wrong credentials");
-
                 }
             } else {
                 return ResponseEntity.ok("Not an already user, please create an account first");
-
             }
-        }catch (Exception e) {
-
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
