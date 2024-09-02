@@ -12,7 +12,6 @@ public class LabModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceNumber;
-
     private String serviceName;
     private String roomNumber;
     private String price;

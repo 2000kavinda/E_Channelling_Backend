@@ -1,14 +1,15 @@
-package com.nsbm.echannelling.labservice.service;
+package com.nsbm.echannelling.labservice.service.implementation;
 
 import com.nsbm.echannelling.labservice.model.LabModel;
 import com.nsbm.echannelling.labservice.repository.LabServiceRepository;
+import com.nsbm.echannelling.labservice.service.LabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class LabServiceImpl implements LabService{
+public class LabServiceImpl implements LabService {
 
     @Autowired
     private LabServiceRepository labServiceRepository;

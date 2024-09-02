@@ -1,23 +1,23 @@
 package com.nsbm.echannelling.labservice.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class LabReportModel {
 
-
-@Id
-private  String repoetid;
-    private String patientId;
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Long repoetid;
+    private Long pId;
+    private  String serviceName;
     private  String pdflink;
-
-
     private String uploadpdfname;
-    private String uploaddate;
-
-
-
-
+    private LocalDate uploaddate;
+    private Double reportPrice;
 }
