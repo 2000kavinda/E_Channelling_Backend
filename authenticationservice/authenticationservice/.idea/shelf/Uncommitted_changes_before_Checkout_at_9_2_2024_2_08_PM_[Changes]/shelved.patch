@@ -1,0 +1,152 @@
+Index: src/main/java/com/nsbm/echannelling/authenticationservice/service/implementation/AuthServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.nsbm.echannelling.authenticationservice.service.implementation;\r\n\r\nimport com.nsbm.echannelling.authenticationservice.dto.UserRequest;\r\nimport com.nsbm.echannelling.authenticationservice.model.Credential;\r\nimport com.nsbm.echannelling.authenticationservice.model.Doctor;\r\nimport com.nsbm.echannelling.authenticationservice.model.LabPerson;\r\nimport com.nsbm.echannelling.authenticationservice.model.Patient;\r\nimport com.nsbm.echannelling.authenticationservice.repository.CredentialsRepository;\r\nimport com.nsbm.echannelling.authenticationservice.repository.DoctorRepository;\r\nimport com.nsbm.echannelling.authenticationservice.repository.LabPersonRepository;\r\nimport com.nsbm.echannelling.authenticationservice.repository.PatientRepository;\r\nimport com.nsbm.echannelling.authenticationservice.service.AuthService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpHeaders;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.security.crypto.password.PasswordEncoder;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.Objects;\r\nimport java.util.Optional;\r\nimport java.util.Random;\r\n//comment\r\n//impl\r\n@Service\r\npublic class AuthServiceImpl implements AuthService {\r\n\r\n    @Autowired\r\n    private CredentialsRepository credentialsRepository;\r\n\r\n    @Autowired\r\n    private DoctorRepository doctorRepository;\r\n\r\n    @Autowired\r\n    private LabPersonRepository labPersonRepository;\r\n\r\n    @Autowired\r\n    private PatientRepository patientRepository;\r\n\r\n    @Autowired\r\n    private EmailServiceImpl emailService;\r\n\r\n    @Autowired\r\n    private PasswordEncoder passwordEncoder;\r\n\r\n    private String generateRandomCode() {\r\n        Random random = new Random();\r\n        int randomCode = 100000 + random.nextInt(900000);\r\n        return String.valueOf(randomCode);\r\n    }\r\n\r\n    @Override\r\n    public ResponseEntity<?> saveUser(UserRequest userRequest) {\r\n        try {\r\n\r\n            Optional<Credential> credentialOptional1 = credentialsRepository.findById(userRequest.getRegNo());\r\n            if (credentialOptional1.isPresent()) {\r\n                return ResponseEntity.ok(\"Pre registered id\");\r\n            } else {\r\n                Optional<Credential> credentialOptional = credentialsRepository.findByEmail(userRequest.getEmail());\r\n                if (credentialOptional.isPresent()) {\r\n                    return ResponseEntity.ok(\"Pre registered email\");\r\n                } else {\r\n                    String encodedPassword = passwordEncoder.encode(userRequest.getPassword());\r\n                    Credential credential = new Credential();\r\n                    credential.setRegNo(userRequest.getRegNo());\r\n                    credential.setEmail(userRequest.getEmail());\r\n                    credential.setPassword(encodedPassword);\r\n                    credential.setRole(userRequest.getRole());\r\n                    credential.setCode(userRequest.getCode());\r\n                    credentialsRepository.save(credential);\r\n\r\n                    switch (userRequest.getRole()) {\r\n                        case \"DOCTOR\":\r\n                            Doctor doctor = new Doctor();\r\n                            doctor.setDrRegNo(userRequest.getRegNo());\r\n                            doctor.setDrName(userRequest.getDrName());\r\n                            doctor.setSpecialize(userRequest.getSpecialize());\r\n                            doctor.setType(userRequest.getType());\r\n                            doctor.setProfileImage(userRequest.getProfileImage());\r\n                            doctor.setDrQualification(userRequest.getDrQualification());\r\n                            doctorRepository.save(doctor);\r\n                            break;\r\n                        case \"LAB_PERSON\":\r\n                            LabPerson labPerson = new LabPerson();\r\n                            labPerson.setLPRegNo(userRequest.getRegNo());\r\n                            labPerson.setLPName(userRequest.getLPName());\r\n                            labPerson.setLabNo(userRequest.getLabNo());\r\n                            labPerson.setLPQualification(userRequest.getLPQualification());\r\n                            labPerson.setLPProfileImage(userRequest.getLPProfileImage());\r\n                            labPersonRepository.save(labPerson);\r\n                            break;\r\n                        case \"PATIENT\":\r\n                            Patient patient = new Patient();\r\n                            patient.setPId(userRequest.getRegNo());\r\n                            patient.setPName(userRequest.getPName());\r\n                            patient.setBDay(userRequest.getBDay());\r\n                            patient.setGender(userRequest.getGender());\r\n                            patient.setContact(userRequest.getContact());\r\n                            patient.setPProfileImage(userRequest.getPProfileImage());\r\n                            patientRepository.save(patient);\r\n                            break;\r\n                        default:\r\n                            throw new IllegalArgumentException(\"Invalid role: \" + userRequest.getRole());\r\n                    }\r\n\r\n                    String subject = \"Welcome To Echannelling\";\r\n                    String text = \"Dear User,\\n\\nYour registration was successful.\\n\\n Here are your account credentials:\\n\\n Username: \" + userRequest.getEmail() + \" \\n\\nPassword :\" + userRequest.getPassword() + \" \\n\\nBest regards,\\nEchannelling Team\";\r\n                    emailService.sendEmail(userRequest.getEmail(), subject, text);\r\n\r\n                    userRequest.setPassword(null);\r\n\r\n                    HttpHeaders headers = new HttpHeaders();\r\n                    headers.add(\"status\", \"Success\");\r\n                    return ResponseEntity\r\n                            .ok()\r\n                            .headers(headers)\r\n                            .body(userRequest);\r\n\r\n\r\n                }\r\n            }\r\n        }catch (Exception e) {\r\n\r\n            return ResponseEntity.badRequest().body(e.getMessage());\r\n        }\r\n\r\n            }\r\n\r\n    @Override\r\n    public ResponseEntity<?> createVerification(String email) {\r\n        try {\r\n            Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);\r\n            if (credentialOptional.isPresent()) {\r\n                Credential credential = credentialOptional.get();\r\n                String randomCode = generateRandomCode();\r\n                credential.setCode(randomCode);\r\n                credentialsRepository.save(credential);\r\n                String subject = \"Password Reset OTP\";\r\n                String text = \"Dear user,\\n\\nWe received a request to reset the password for your\" + email + \" account.\\n\\nOTP: \" + randomCode + \"\\n\\nBest regards,\\n\\nEchannelling Team\";\r\n                emailService.sendEmail(email, subject, text);\r\n\r\n                return ResponseEntity.ok(\"Reset OTP send to the mail\");\r\n            } else {\r\n\r\n                return ResponseEntity.ok(\"Email not available\");\r\n\r\n            }\r\n        }catch (Exception e) {\r\n\r\n            return ResponseEntity.badRequest().body(e.getMessage());\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public ResponseEntity<?> updatePassword(String email, String code,String newPassword) {\r\n        try {\r\n            Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);\r\n            if (credentialOptional.get().getCode().equals(code)) {\r\n                String encodedPassword = passwordEncoder.encode(newPassword);\r\n                Credential credential = credentialOptional.get();\r\n                credential.setPassword(encodedPassword);\r\n                credentialsRepository.save(credential);\r\n                return ResponseEntity.ok(\"Pssword updated successfully\");\r\n\r\n            } else {\r\n\r\n                return ResponseEntity.ok(\"Something went wrong\");\r\n            }\r\n        }catch (Exception e) {\r\n\r\n            return ResponseEntity.badRequest().body(e.getMessage());\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public ResponseEntity<?> login(String email, String password) {\r\n       try {\r\n            Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);\r\n            if (credentialOptional.isPresent()) {\r\n                Credential credential = credentialOptional.get();\r\n                if (passwordEncoder.matches(password, credential.getPassword())) {\r\n                    HttpHeaders headers = new HttpHeaders();\r\n                    headers.add(\"status\", \"Success\");\r\n                    if (Objects.equals(credential.getRole(), \"DOCTOR\")) {\r\n                        headers.add(\"role\", \"DOCTOR\");\r\n                        return ResponseEntity\r\n                                .ok()\r\n                                .headers(headers)\r\n                                .body(doctorRepository.findById(credential.getRegNo()));\r\n\r\n                    } else if (Objects.equals(credential.getRole(), \"LAB_PERSON\")) {\r\n                        headers.add(\"role\", \"LAB_PERSON\");\r\n                        return ResponseEntity\r\n                                .ok()\r\n                                .headers(headers)\r\n                                .body(labPersonRepository.findById(credential.getRegNo()));\r\n\r\n                    } else if (Objects.equals(credential.getRole(), \"PATIENT\")) {\r\n                        headers.add(\"role\", \"PATIENT\");\r\n                        return ResponseEntity\r\n                                .ok()\r\n                                .headers(headers)\r\n                                .body(patientRepository.findById(credential.getRegNo()));\r\n                    } else {\r\n                        return ResponseEntity.ok(\"Admin logged in\");\r\n                    }\r\n\r\n                } else {\r\n                    return ResponseEntity.ok(\"Wrong credentials\");\r\n\r\n                }\r\n            } else {\r\n                return ResponseEntity.ok(\"Not an already user, please create an account first\");\r\n\r\n            }\r\n        }catch (Exception e) {\r\n\r\n            return ResponseEntity.badRequest().body(e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/nsbm/echannelling/authenticationservice/service/implementation/AuthServiceImpl.java b/src/main/java/com/nsbm/echannelling/authenticationservice/service/implementation/AuthServiceImpl.java
+--- a/src/main/java/com/nsbm/echannelling/authenticationservice/service/implementation/AuthServiceImpl.java	
++++ b/src/main/java/com/nsbm/echannelling/authenticationservice/service/implementation/AuthServiceImpl.java	
+@@ -1,10 +1,6 @@
+ package com.nsbm.echannelling.authenticationservice.service.implementation;
+ 
+-import com.nsbm.echannelling.authenticationservice.dto.UserRequest;
+ import com.nsbm.echannelling.authenticationservice.model.Credential;
+-import com.nsbm.echannelling.authenticationservice.model.Doctor;
+-import com.nsbm.echannelling.authenticationservice.model.LabPerson;
+-import com.nsbm.echannelling.authenticationservice.model.Patient;
+ import com.nsbm.echannelling.authenticationservice.repository.CredentialsRepository;
+ import com.nsbm.echannelling.authenticationservice.repository.DoctorRepository;
+ import com.nsbm.echannelling.authenticationservice.repository.LabPersonRepository;
+@@ -49,82 +45,48 @@
+     }
+ 
+     @Override
+-    public ResponseEntity<?> saveUser(UserRequest userRequest) {
++    public ResponseEntity<?> saveUser(String email, String password) {
+         try {
+-
+-            Optional<Credential> credentialOptional1 = credentialsRepository.findById(userRequest.getRegNo());
+-            if (credentialOptional1.isPresent()) {
+-                return ResponseEntity.ok("Pre registered id");
+-            } else {
+-                Optional<Credential> credentialOptional = credentialsRepository.findByEmail(userRequest.getEmail());
+-                if (credentialOptional.isPresent()) {
+-                    return ResponseEntity.ok("Pre registered email");
+-                } else {
+-                    String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
+-                    Credential credential = new Credential();
+-                    credential.setRegNo(userRequest.getRegNo());
+-                    credential.setEmail(userRequest.getEmail());
+-                    credential.setPassword(encodedPassword);
+-                    credential.setRole(userRequest.getRole());
+-                    credential.setCode(userRequest.getCode());
+-                    credentialsRepository.save(credential);
+-
+-                    switch (userRequest.getRole()) {
+-                        case "DOCTOR":
+-                            Doctor doctor = new Doctor();
+-                            doctor.setDrRegNo(userRequest.getRegNo());
+-                            doctor.setDrName(userRequest.getDrName());
+-                            doctor.setSpecialize(userRequest.getSpecialize());
+-                            doctor.setType(userRequest.getType());
+-                            doctor.setProfileImage(userRequest.getProfileImage());
+-                            doctor.setDrQualification(userRequest.getDrQualification());
+-                            doctorRepository.save(doctor);
+-                            break;
+-                        case "LAB_PERSON":
+-                            LabPerson labPerson = new LabPerson();
+-                            labPerson.setLPRegNo(userRequest.getRegNo());
+-                            labPerson.setLPName(userRequest.getLPName());
+-                            labPerson.setLabNo(userRequest.getLabNo());
+-                            labPerson.setLPQualification(userRequest.getLPQualification());
+-                            labPerson.setLPProfileImage(userRequest.getLPProfileImage());
+-                            labPersonRepository.save(labPerson);
+-                            break;
+-                        case "PATIENT":
+-                            Patient patient = new Patient();
+-                            patient.setPId(userRequest.getRegNo());
+-                            patient.setPName(userRequest.getPName());
+-                            patient.setBDay(userRequest.getBDay());
+-                            patient.setGender(userRequest.getGender());
+-                            patient.setContact(userRequest.getContact());
+-                            patient.setPProfileImage(userRequest.getPProfileImage());
+-                            patientRepository.save(patient);
+-                            break;
+-                        default:
+-                            throw new IllegalArgumentException("Invalid role: " + userRequest.getRole());
+-                    }
+-
+-                    String subject = "Welcome To Echannelling";
+-                    String text = "Dear User,\n\nYour registration was successful.\n\n Here are your account credentials:\n\n Username: " + userRequest.getEmail() + " \n\nPassword :" + userRequest.getPassword() + " \n\nBest regards,\nEchannelling Team";
+-                    emailService.sendEmail(userRequest.getEmail(), subject, text);
+-
+-                    userRequest.setPassword(null);
+-
++            Optional<Credential> credentialOptional = credentialsRepository.findByEmail(email);
++            if (credentialOptional.isPresent()) {
++                Credential credential = credentialOptional.get();
++                if (passwordEncoder.matches(password, credential.getPassword())) {
+                     HttpHeaders headers = new HttpHeaders();
+                     headers.add("status", "Success");
+-                    return ResponseEntity
+-                            .ok()
+-                            .headers(headers)
+-                            .body(userRequest);
++                    if (Objects.equals(credential.getRole(), "DOCTOR")) {
++                        headers.add("role", "DOCTOR");
++                        return ResponseEntity
++                                .ok()
++                                .headers(headers)
++                                .body(doctorRepository.findById(credential.getRegNo()));
++
++                    } else if (Objects.equals(credential.getRole(), "LAB_PERSON")) {
++                        headers.add("role", "LAB_PERSON");
++                        return ResponseEntity
++                                .ok()
++                                .headers(headers)
++                                .body(labPersonRepository.findById(credential.getRegNo()));
+ 
++                    } else if (Objects.equals(credential.getRole(), "PATIENT")) {
++                        headers.add("role", "PATIENT");
++                        return ResponseEntity
++                                .ok()
++                                .headers(headers)
++                                .body(patientRepository.findById(credential.getRegNo()));
++                    } else {
++                        return ResponseEntity.ok("Admin logged in");
++                    }
+ 
++                } else {
++                    return ResponseEntity.ok("Wrong credentials");
+                 }
++            } else {
++                return ResponseEntity.ok("Not an already user, please create an account first");
+             }
+-        }catch (Exception e) {
+-
++        } catch (Exception e) {
+             return ResponseEntity.badRequest().body(e.getMessage());
+         }
+-
+-            }
++    }
+ 
+     @Override
+     public ResponseEntity<?> createVerification(String email) {
+Index: src/main/java/com/nsbm/echannelling/authenticationservice/service/AuthService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.nsbm.echannelling.authenticationservice.service;\r\n\r\nimport com.nsbm.echannelling.authenticationservice.dto.UserRequest;\r\nimport org.springframework.http.ResponseEntity;\r\n\r\npublic interface AuthService {\r\n\r\n    ResponseEntity<?> saveUser(UserRequest userRequest);\r\n\r\n    ResponseEntity<?> createVerification(String email);\r\n\r\n    ResponseEntity<?> updatePassword(String email, String code,String newPassword);\r\n\r\n    ResponseEntity<?> login(String email, String password);\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/nsbm/echannelling/authenticationservice/service/AuthService.java b/src/main/java/com/nsbm/echannelling/authenticationservice/service/AuthService.java
+--- a/src/main/java/com/nsbm/echannelling/authenticationservice/service/AuthService.java	
++++ b/src/main/java/com/nsbm/echannelling/authenticationservice/service/AuthService.java	
+@@ -7,6 +7,8 @@
+ 
+     ResponseEntity<?> saveUser(UserRequest userRequest);
+ 
++    //ResponseEntity<?> saveUser(String email, String password);
++
+     ResponseEntity<?> createVerification(String email);
+ 
+     ResponseEntity<?> updatePassword(String email, String code,String newPassword);

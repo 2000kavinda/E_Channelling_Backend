@@ -1,0 +1,27 @@
+Index: src/main/java/com/nsbm/echannelling/authenticationservice/Configs/WebConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/nsbm/echannelling/authenticationservice/Configs/WebConfig.java b/src/main/java/com/nsbm/echannelling/authenticationservice/Configs/WebConfig.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/nsbm/echannelling/authenticationservice/Configs/WebConfig.java	
+@@ -0,0 +1,17 @@
++package com.nsbm.echannelling.authenticationservice.Configs;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.web.servlet.config.annotation.CorsRegistry;
++import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
++
++@Configuration
++public class WebConfig implements WebMvcConfigurer {
++
++    @Override
++    public void addCorsMappings(CorsRegistry registry) {
++        registry.addMapping("/**")
++                .allowedOrigins("http://localhost:5173") // React app URL
++                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
++                .allowedHeaders("*")
++                .allowCredentials(true);
++    }
++}
