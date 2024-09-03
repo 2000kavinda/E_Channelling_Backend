@@ -5,26 +5,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fb766df-a5da-43a5-a722-76370ceffa1c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../healthcare/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/src/main/java/com/nsbm/healthcare/healthcare/HealthcareApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../healthcare/src/test/java/com/nsbm/healthcare/healthcare/HealthcareApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doctorservice/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../doctorservice/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/com/nsbm/echannelling/notificationservice/NotificationserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/nsbm/echannelling/notificationservice/NotificationserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/test/java/com/nsbm/echannelling/notificationservice/NotificationserviceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/test/java/com/nsbm/echannelling/notificationservice/NotificationserviceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/.." source="origin/feature_notification_service" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="feature_doctor_service" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/notificationservice/src/main/java/com/nsbm/echannelling/notificationservice/model/Notification.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="NotificationserviceApplicationTests" />
+    </enabled-run-configurations>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2iXNoqBKm2IG3lEwny0MlJ4tcoX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,12 +77,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.NotificationserviceApplication.executor": "Run",
+    "JUnit.NotificationserviceApplicationTests.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature__notification__service",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/E_Channelling_BackEnd/notificationservice/notificationservice/src/main/java/com/nsbm/echannelling/notificationservice",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.tools",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -45,8 +97,24 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\E_Channelling_BackEnd\notificationservice\notificationservice\src\main\java\com\nsbm\echannelling\notificationservice" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.nsbm.echannelling.notificationservice.service.implementation" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.NotificationserviceApplication">
+    <configuration name="NotificationserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.nsbm.echannelling.notificationservice.NotificationserviceApplication" />
+      <module name="notificationservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nsbm.echannelling.notificationservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NotificationserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="notificationservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.nsbm.echannelling.notificationservice.NotificationserviceApplication" />
@@ -54,12 +122,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.NotificationserviceApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="jdk-20.0.2-corretto-20.0.2.1-f644763e9732-27d99999" />
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
       </set>
     </attachedChunks>
   </component>
@@ -77,5 +151,28 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/feature_notification_service" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

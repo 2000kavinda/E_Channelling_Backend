@@ -2,6 +2,28 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="labservice" />
+        <module name="appointmentservice" />
+        <module name="doctorservice" />
+        <module name="notificationservice" />
+        <module name="patientservice" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="appointmentservice" options="-parameters" />
+      <module name="doctorservice" options="-parameters" />
+      <module name="labservice" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
+      <module name="patientservice" options="-parameters" />
+    </option>
+
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -13,5 +35,6 @@
       <module name="notificationservice" target="22" />
       <module name="patientservice" target="22" />
     </bytecodeTargetLevel>
+
   </component>
 </project>
