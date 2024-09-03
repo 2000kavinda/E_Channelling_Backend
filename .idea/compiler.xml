@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -22,5 +23,18 @@
       <module name="notificationservice" options="-parameters" />
       <module name="patientservice" options="-parameters" />
     </option>
+
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="adminservice" target="22" />
+      <module name="appointmentservice" target="22" />
+      <module name="authenticationservice" target="22" />
+      <module name="doctorservice" target="22" />
+      <module name="labservice" target="22" />
+      <module name="notificationservice" target="22" />
+      <module name="patientservice" target="22" />
+    </bytecodeTargetLevel>
+
   </component>
 </project>

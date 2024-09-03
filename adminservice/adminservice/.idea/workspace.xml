@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f66563ce-2d3f-4f73-bad8-680cbf47928c" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="feature_authentication_service" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2kKFfzesEtlFm45sIc7I788cuVD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature__admin__service&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.nsbm.echannelling.adminservice.repository" />
+      <recent name="com.nsbm.echannelling.adminservice.model" />
+      <recent name="com.nsbm.echannelling.adminservice.controller" />
+      <recent name="com.nsbm.echannelling.adminservice.service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AdminserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="adminservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.nsbm.echannelling.adminservice.AdminserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f66563ce-2d3f-4f73-bad8-680cbf47928c" name="Changes" comment="" />
+      <created>1723024468898</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723024468898</updated>
+      <workItem from="1723024470068" duration="6618000" />
+      <workItem from="1723093441289" duration="14819000" />
+      <workItem from="1723176429968" duration="35320000" />
+      <workItem from="1723259488893" duration="6180000" />
+      <workItem from="1723695504560" duration="10292000" />
+      <workItem from="1723817797232" duration="2304000" />
+      <workItem from="1723829623958" duration="2844000" />
+      <workItem from="1723864065791" duration="44000" />
+      <workItem from="1723864639822" duration="707000" />
+      <workItem from="1723873403774" duration="864000" />
+      <workItem from="1724332573845" duration="3820000" />
+      <workItem from="1724344910259" duration="5995000" />
+      <workItem from="1724394885268" duration="98000" />
+      <workItem from="1724396559546" duration="367000" />
+      <workItem from="1724406700955" duration="3306000" />
+      <workItem from="1724412536529" duration="6000" />
+      <workItem from="1724432064678" duration="1879000" />
+      <workItem from="1724433978906" duration="6000" />
+      <workItem from="1724435595868" duration="1418000" />
+      <workItem from="1724473822141" duration="3427000" />
+      <workItem from="1724486406828" duration="2781000" />
+      <workItem from="1724611277914" duration="747000" />
+      <workItem from="1724681588950" duration="498000" />
+      <workItem from="1724683282458" duration="434000" />
+      <workItem from="1724690365732" duration="624000" />
+      <workItem from="1724778101268" duration="747000" />
+      <workItem from="1724856122784" duration="605000" />
+      <workItem from="1724956095736" duration="5161000" />
+      <workItem from="1725211262026" duration="4933000" />
+      <workItem from="1725308885160" duration="27000" />
+      <workItem from="1725308944175" duration="34000" />
+      <workItem from="1725309000835" duration="21000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
