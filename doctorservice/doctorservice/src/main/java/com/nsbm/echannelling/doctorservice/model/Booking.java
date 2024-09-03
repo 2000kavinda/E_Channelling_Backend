@@ -19,9 +19,14 @@ public class Booking {
     public Long drId;
     public Long pId;
     public String pName;
+    public String profileImage;
     public LocalDate bDay;
+    public LocalDate birthDay;
     public String gender;
     public String contact;
+    public Double weight;
+    public Double height;
+    public String allegies;
 
 
 }

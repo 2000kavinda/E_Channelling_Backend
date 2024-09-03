@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking,Long> {
+
     List<Booking> findByDrId(Long drId);
     @Query("SELECT p FROM Booking p WHERE LOWER(p.pName) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<Booking> findByNameContaining(@Param("name") String name);

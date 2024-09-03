@@ -1,20 +1,24 @@
-package com.nsbm.echannelling.doctorservice.service;
+package com.nsbm.echannelling.doctorservice.service.implementation;
 
-import com.nsbm.echannelling.doctorservice.model.Booking;
 import com.nsbm.echannelling.doctorservice.repository.BookingRepository;
+import com.nsbm.echannelling.doctorservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
-public class BookingServiceImpl implements BookingService{
+public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
 
+    /**
+     * filter bookings for specific drRegNo
+     * @param drRegNo
+     * @return
+     */
     @Override
     public ResponseEntity<?> filterBookings(Long drRegNo) {
         try {
@@ -26,11 +30,27 @@ public class BookingServiceImpl implements BookingService{
         }
     }
 
+    /**
+     * search patient
+     * @param drNamePart
+     * @return
+     */
     @Override
-    public List<Booking> getPatientByNamePart(String drNamePart) {
-        return bookingRepository.findByNameContaining(drNamePart);
+    public ResponseEntity<?> getPatientByNamePart(String drNamePart) {
+        try {
+            return ResponseEntity.ok(bookingRepository.findByNameContaining(drNamePart));
+        } catch (Exception e) {
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
+    /**
+     * filter bookings by date
+     * @param bDay
+     * @param drId
+     * @return
+     */
     @Override
     public ResponseEntity<?> filterBookingsByDate(LocalDate bDay, Long drId) {
         try {
@@ -42,6 +62,11 @@ public class BookingServiceImpl implements BookingService{
         }
     }
 
+    /**
+     * get total of the appointment for specific DR
+     * @param drId
+     * @return
+     */
     @Override
     public ResponseEntity<?> getAppointmentCount(Long drId) {
         try {

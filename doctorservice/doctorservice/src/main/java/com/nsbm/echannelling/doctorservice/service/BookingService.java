@@ -9,7 +9,7 @@ import java.util.List;
 public interface BookingService {
     ResponseEntity<?> filterBookings(Long drRegNo);
 
-    List<Booking> getPatientByNamePart(String drNamePart);
+    ResponseEntity<?> getPatientByNamePart(String drNamePart);
 
     ResponseEntity<?> filterBookingsByDate(LocalDate bDay, Long drId);
 
