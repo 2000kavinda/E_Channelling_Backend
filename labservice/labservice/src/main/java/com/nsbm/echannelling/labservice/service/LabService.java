@@ -5,7 +5,7 @@ import com.nsbm.echannelling.labservice.model.LabModel;
 import java.util.List;
 
 public interface LabService {
-    boolean existsByServiceName(String serviceName);
+    boolean isExistsByServiceName(String serviceName);
 
     void save(LabModel labModel);
 

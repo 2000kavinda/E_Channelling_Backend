@@ -7,7 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/lab-reports")
+@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/labreports")
 public class LabReportController {
 
     @Autowired

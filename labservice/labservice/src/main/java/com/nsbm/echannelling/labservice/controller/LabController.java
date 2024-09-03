@@ -25,7 +25,7 @@ public class LabController {
     @PostMapping("/add")
     public ResponseEntity<String> add(@RequestBody LabModel lab) {
         try {
-            if (labService.existsByServiceName(lab.getServiceName())) {
+            if (labService.isExistsByServiceName(lab.getServiceName())) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
                         .body("Service name " + lab.getServiceName() + " already exists");
             }

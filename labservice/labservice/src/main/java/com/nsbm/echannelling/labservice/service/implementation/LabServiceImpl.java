@@ -15,7 +15,7 @@ public class LabServiceImpl implements LabService {
     private LabServiceRepository labServiceRepository;
 
     @Override
-    public boolean existsByServiceName(String serviceName) {
+    public boolean isExistsByServiceName(String serviceName) {
         return labServiceRepository.existsByServiceName(serviceName);
     }
 
