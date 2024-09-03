@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c11d257-0d27-44e5-9875-b8a5d9ab9fa9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/adminservice/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/AppointmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/AppointmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/DoctorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/DoctorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/LabPersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/LabPersonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/LabTestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/LabTestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/PatientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/PatientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/ScheduleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/controller/ScheduleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/repository/ScheduleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/repository/ScheduleRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/service/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/service/ScheduleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/service/implementation/ScheduleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/adminservice/adminservice/target/classes/com/nsbm/echannelling/adminservice/service/implementation/ScheduleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authenticationservice/authenticationservice/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_2_2024_2_08_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authenticationservice/authenticationservice/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_2_2024_2_08_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authenticationservice/authenticationservice/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_2_2024_2_08_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authenticationservice/authenticationservice/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_2_2024_2_08_PM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authenticationservice/authenticationservice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authenticationservice/authenticationservice/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authenticationservice/authenticationservice/target/classes/com/nsbm/echannelling/authenticationservice/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/authenticationservice/authenticationservice/target/classes/com/nsbm/echannelling/authenticationservice/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +106,8 @@
       <workItem from="1725335015748" duration="7412000" />
       <workItem from="1725373351883" duration="1326000" />
       <workItem from="1725397945754" duration="339000" />
+      <workItem from="1725398770505" duration="22000" />
+      <workItem from="1725398815995" duration="29000" />
     </task>
     <servers />
   </component>
