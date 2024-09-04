@@ -24,6 +24,17 @@ public class LabPersonController {
     }
 
     /**
+     * get full details for specific lab person
+     * @param labPersonId
+     * @return
+     */
+    @GetMapping("/getlabpersondata")
+    public ResponseEntity<?> getALabPerson(@RequestParam Long labPersonId) {
+        return labPersonService.getALabPerson(labPersonId);
+
+    }
+
+    /**
      * update the existing selected lab person
      * @param lPRegNo
      * @param labPerson

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +35,21 @@ public class DoctorServiceImpl implements DoctorService {
     public ResponseEntity<?> getAllDoctors() {
         try {
             return  ResponseEntity.ok(doctorRepository.findAll());
+
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    /**
+     * get the all details of specific selected DR
+     * @param drRegNo
+     * @return
+     */
+    @Override
+    public ResponseEntity<?> getADoctor(Long drRegNo) {
+        try {
+            return  ResponseEntity.ok(doctorRepository.findById(drRegNo));
 
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

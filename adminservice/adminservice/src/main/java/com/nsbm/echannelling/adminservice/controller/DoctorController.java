@@ -30,6 +30,17 @@ public class DoctorController {
     }
 
     /**
+     * get full details for selected DR
+     * @param drRegNo
+     * @return
+     */
+    @GetMapping("/getadoctor")
+    public ResponseEntity<?> getADoctor(@RequestParam Long drRegNo) {
+        return doctorService.getADoctor(drRegNo);
+
+    }
+
+    /**
      * update the existing selected DR
      * @param drRegNo
      * @param doctor
