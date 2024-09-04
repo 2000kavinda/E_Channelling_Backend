@@ -10,6 +10,8 @@ public interface DoctorService {
 
     ResponseEntity<?> getAllDoctors();
 
+    ResponseEntity<?> getADoctor(Long drRegNo);
+
     ResponseEntity<?>  updateDoctor(Long drRegNo, Doctor newDoctor);
 
     ResponseEntity<?>  deleteDoctor(Long drRegNo);

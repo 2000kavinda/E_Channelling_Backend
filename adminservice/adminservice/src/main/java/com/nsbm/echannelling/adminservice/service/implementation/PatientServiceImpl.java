@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,6 +24,21 @@ public class PatientServiceImpl implements PatientService {
     public ResponseEntity<?> getAllPatients() {
         try {
             return  ResponseEntity.ok(patientRepository.findAll());
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    /**
+     * get full details for specific patient
+     * @param pId
+     * @return
+     */
+    @Override
+    public ResponseEntity<?> getAPatient(Long pId) {
+        try {
+            return  ResponseEntity.ok(patientRepository.findById(pId));
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

@@ -1,6 +1,5 @@
 package com.nsbm.echannelling.adminservice.service.implementation;
 
-import com.nsbm.echannelling.adminservice.model.Credential;
 import com.nsbm.echannelling.adminservice.model.LabPerson;
 import com.nsbm.echannelling.adminservice.repository.CredentialsRepository;
 import com.nsbm.echannelling.adminservice.repository.LabPersonRepository;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,6 +24,21 @@ public class LabPersonServiceImpl implements LabPersonService {
     public ResponseEntity<?> getAllLabPerson() {
         try {
             return  ResponseEntity.ok(labPersonRepository.findAll());
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    /**
+     * get full details for selected lab person details
+     * @param lPRegNo
+     * @return
+     */
+    @Override
+    public ResponseEntity<?> getALabPerson(Long lPRegNo) {
+        try {
+            return  ResponseEntity.ok(labPersonRepository.findById(lPRegNo));
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

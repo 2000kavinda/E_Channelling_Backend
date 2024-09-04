@@ -23,5 +23,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     List<Schedule> findByDate(LocalDate date);
 
+    @Query("SELECT new com.nsbm.echannelling.adminservice.dto.ScheduleDTO(s.sId, d.drName, s.date, s.start, s.end, s.roomNo) " +
+            "FROM Schedule s JOIN Doctor d ON s.drRegNo = d.drRegNo WHERE s.sId = :sId")
+    Optional<ScheduleDTO> findScheduleBySId(@Param("sId") Long sId);
+
     //List<Schedule> findByDateAndDrRegNo(LocalDate date, Long drRegNo);
 }

@@ -23,6 +23,12 @@ public class PatientController {
 
     }
 
+    @GetMapping("/getpatientdata")
+    public ResponseEntity<?> getAPatient(@RequestParam Long pId) {
+        return patientService.getAPatient(pId);
+
+    }
+
     /**
      * update existing selected patient
      * @param pId
