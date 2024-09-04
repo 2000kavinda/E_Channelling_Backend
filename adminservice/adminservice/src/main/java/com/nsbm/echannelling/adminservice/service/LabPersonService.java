@@ -8,6 +8,9 @@ import java.util.List;
 public interface LabPersonService {
     ResponseEntity<?> getAllLabPerson();
 
+    //get all lab person details
+    ResponseEntity<?> getALabPerson(Long lPRegNo);
+
     ResponseEntity<?>  updateLabPerson(Long lPRegNo, LabPerson newLabPerson);
 
     ResponseEntity<?> deleteLabPerson(Long lPRegNo);

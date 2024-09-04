@@ -2,6 +2,7 @@ package com.nsbm.echannelling.adminservice.controller;
 
 import com.nsbm.echannelling.adminservice.dto.ScheduleDTO;
 import com.nsbm.echannelling.adminservice.model.Schedule;
+import com.nsbm.echannelling.adminservice.repository.ScheduleRepository;
 import com.nsbm.echannelling.adminservice.service.implementation.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class ScheduleController {
 
     @Autowired
     ScheduleServiceImpl scheduleService;
+
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
     /**
      * save a schedule
@@ -80,5 +84,17 @@ public class ScheduleController {
     @GetMapping("/searchN")
     public ResponseEntity<?> getSchedulesByDoctorNamePart(@RequestParam String drNamePart) {
         return ResponseEntity.ok(scheduleService.getSchedulesByDoctorNamePart(drNamePart));
+    }
+
+    /**
+     * get full data view for selected schedule id
+     * @param sId
+     * @return
+     */
+    @GetMapping("/{sId}")
+    public ResponseEntity<ScheduleDTO> getScheduleBySId(@PathVariable Long sId) {
+        return scheduleRepository.findScheduleBySId(sId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
