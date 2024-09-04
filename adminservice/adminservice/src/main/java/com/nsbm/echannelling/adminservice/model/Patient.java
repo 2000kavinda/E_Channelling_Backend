@@ -18,5 +18,6 @@ public class Patient {
     public LocalDate bDay;
     public String gender;
     public String contact;
+    private String pProfileImage;
 
 }
