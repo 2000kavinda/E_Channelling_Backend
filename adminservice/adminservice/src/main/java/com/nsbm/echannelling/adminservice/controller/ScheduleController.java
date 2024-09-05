@@ -67,12 +67,12 @@ public class ScheduleController {
 
     /**
      * delete selected schedule
-     * @param id
+     * @param sId
      * @return
      */
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteSchedule(@RequestParam Long id) {
-        return scheduleService.deleteSchedule(id);
+    public ResponseEntity<?> deleteSchedule(@RequestParam Long sId) {
+        return scheduleService.deleteSchedule(sId);
 
     }
 
