@@ -19,7 +19,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.saveUser(userRequest));
     }
 
-    @PutMapping ("/createverification")
+    @GetMapping ("/createverification")
     public ResponseEntity<?> checkAndUpdateEmail(@RequestParam String email) {
 
         return ResponseEntity.ok(authService.createVerification(email));
