@@ -1,0 +1,32 @@
+
+
+
+name: Run JAR File
+
+# Run the workflow on specific events, e.g., push or schedule.
+on:
+  push:
+    branches:
+      - feature_authentication_service  # or the branch name you want
+  schedule:
+    - cron: '0 0 * * *'  # Every day at midnight UTC
+
+jobs:
+  run_jar:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java (change version if needed)
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'  # Use AdoptOpenJDK distribution
+          java-version: '22'       # Set to the Java version your JAR requires
+
+      # Step 3: Run the JAR file
+      - name: Run JAR file
+        run: java -jar authenticationservice/authenticationservice/out/artifacts/authenticationservice_jar/authenticationservice.jar  # Update with your JAR file path
